@@ -1,0 +1,86 @@
+@import '~antd/lib/style/themes/default.less';
+
+.main {
+  //width: 348px;
+  //margin: 0 auto;
+  //padding-top:20px;
+  padding: 15px;
+  margin: 0 20px;
+  border-radius: 10px;
+  background: white;
+
+  :global {
+    .ant-form-item{
+    //  margin:0 !important;
+      .ant-form-item-control-wrapper{
+        height: 62px;
+      }
+    }
+    .ant-form-item:nth-last-child(1){
+      .ant-form-item-control-wrapper{
+        height: 55px !important;
+      }
+    }
+    .ant-form-item:nth-last-child(1){
+      .ant-form-item-control-wrapper{
+        height: 20px !important;
+      }
+    }
+  }
+
+  h3 {
+    margin-bottom: 15px;
+    color: #E77918;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .getCaptcha {
+    display: block;
+    width: 100%;
+    padding: 0 !important;
+  }
+
+  .submit {
+    width: 50%;
+  }
+  .checkbox{
+    display: flex;
+    align-items: center;
+  }
+  .login {
+    float: right;
+    font-weight: bold;
+    //line-height: @btn-height-lg;
+    line-height: normal;
+  }
+  .code{
+    line-height: @btn-height-lg;
+  }
+}
+
+.success,
+.warning,
+.error {
+  transition: color 0.3s;
+}
+
+.success {
+  color: @success-color;
+}
+
+.warning {
+  color: @warning-color;
+}
+
+.error {
+  color: @error-color;
+}
+
+.progress-pass > .progress {
+  :global {
+    .ant-progress-bg {
+      background-color: @warning-color;
+    }
+  }
+}

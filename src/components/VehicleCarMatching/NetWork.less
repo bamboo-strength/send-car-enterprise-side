@@ -1,0 +1,412 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/dist/antd.less';
+
+/* 网络货运 */
+#netWork {
+  :global {
+    .am-tabs-tab-bar-wrap {
+      position: fixed;
+      width: 100%;
+      z-index: 11;
+    }
+
+    .am-tabs-content-wrap {
+      position: relative;
+      top: 44px;
+    }
+    .ant-card-actions > li {
+      margin: 0 !important;
+      padding: 10px 0;
+    }
+
+    .networkDetail {
+      background: #f0f2f5;
+
+      .networkDetailDiv {
+        background: white;
+        padding: 3% 0;
+
+        .networkDetailCard {
+          width: 94%;
+          background: #4581f5;
+          margin: 0 3% 3%;
+
+          .ant-card-body {
+            padding: 8px;
+            display: flex;
+
+            .DetailCardDiv {
+              background: white;
+              width: 25px;
+              text-Align: center;
+              border-Radius: 2px;
+              padding: 5px;
+              color: #4581f5;
+              font-Size: 12px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            .DetailCardRow {
+              margin-Left: 3%;
+
+              .ant-typography {
+                color: white;
+              }
+            }
+          }
+
+        }
+
+        .networkDetailCard:nth-child(2) {
+          background: #faad14;
+
+          .DetailCardDiv {
+            color: #faad14;
+          }
+        }
+      }
+
+      /* 钱包开始 */
+
+      .walletCard {
+        width: 94%;
+        margin: 0 3% 3%;
+        background: rgba(221, 225, 244, 1);
+        box-shadow: 0 0 10px #88888847;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .walletCardActions {
+          .anticon {
+            font-size: 20px;
+            margin-right: 8px;
+          }
+
+          .ant-typography {
+            color: rgb(24, 144, 255);
+          }
+        }
+
+        .walletCardFLex {
+          margin: 10% 0px 8%;
+
+          .anticon {
+            margin-left: 8px;
+          }
+
+          .ant-typography {
+            margin: 0px;
+          }
+        }
+      }
+
+      .detailTitle {
+        width: 94%;
+        margin: 0px 3% 3%;
+
+        .anticon {
+          margin-left: 5px;
+        }
+      }
+
+      /* 钱包结束 */
+
+      .networkList {
+        background: white;
+        padding: 0 3%;
+        margin-Bottom: 2%;
+
+        .ant-list-header {
+          div {
+            border-Left: 2px #4581f5 solid;
+            margin-Left: -3%;
+            padding-Left: 3%;
+            color: #4581f5;
+          }
+        }
+
+        .ant-row {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          .ant-col {
+            padding: 0 !important;
+          }
+
+          .ant-col:nth-child(2) {
+            text-align: right;
+          }
+        }
+
+        label.ant-radio-button-wrapper {
+          margin-right: 10px;
+          border-radius: 4px;
+          overflow: hidden;
+          border-left: 1px solid #d9d9d9;
+        }
+
+        label.ant-radio-button-wrapper:first-child {
+          border-radius: 4px;
+        }
+
+        label.ant-radio-button-wrapper:last-child {
+          border-radius: 4px;
+        }
+
+        label.ant-radio-button-wrapper.ant-radio-button-wrapper-checked {
+          box-shadow: none;
+          border: 1px solid #096dd9 !important;
+        }
+      }
+
+      .ant-card {
+        .ant-upload {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.netWorkRate {
+  :global {
+    .ant-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      .ant-col {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+.netWorkModal{
+  :global{
+    .ant-modal-body{
+      display: flex;
+    }
+  }
+}
+
+:global {
+  .dateBtnPicker {
+    border-radius: 0 !important;
+  }
+
+  .dateBtnPicker:first-child {
+    background: #108ee912
+  }
+
+  .dateBtnPicker::before {
+    border-radius: 0px !important;
+    border: none !important;
+  }
+
+  .screenIng {
+    .ant-col {
+      padding: 0 !important;
+      line-height: 32px;
+    }
+  }
+  .dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .count {
+    span {
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+    }
+  }
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  .divProgress {
+    margin-top: 10px;
+    border-top: 1px solid rgb(222, 222, 222);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .ant-progress {
+      width: 66%;
+      font-size: 12px;
+    }
+  }
+  .colorBlue {
+    color: #008dff;
+  }
+  .alignCenter{
+    display: flex;
+    align-items: center;
+    .ant-form-item{
+      flex: 1;
+    }
+  }
+  .alignTitle{
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .tableModal{
+    .ant-modal-body{
+      padding: 4% !important;
+    }
+  }
+}
+
+.netWorkListCard {
+  :global {
+    .ant-card-actions {
+      background: white;
+    }
+
+    .ant-card-extra {
+      div {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 16px;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .ant-tag {
+      margin-left: 10px;
+    }
+
+    .cardDiv {
+      display: flex;
+
+      .leftDiv {
+        flex: 1 1 0%;
+        padding: 2% 3% 0px 0px;
+
+        .leftDivflex {
+          display: flex;
+          align-items: center;
+
+          div {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 10px;
+          }
+        }
+
+        .leftP {
+          margin-top: 10px;
+          color: rgb(24, 144, 255);
+          margin-bottom: 5px;
+        }
+
+        .leftPrice {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          font-size: 12px;
+
+          div {
+            p {
+              margin-bottom: 0px;
+            }
+          }
+        }
+
+        .phoneBox {
+          width: 15%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            width: 30px;
+          }
+        }
+      }
+
+      .divRight {
+        border-left: 1px solid rgb(222, 222, 222);
+        width: 20%;
+
+        .rightDiv {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          //span {
+          //  color: rgb(24, 144, 255);
+          //  margin-top: 10px;
+          //}
+        }
+        .rightDivHyaline {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          opacity: 0.3;
+          span {
+            color: rgb(24, 144, 255);
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.networkListView {
+  overflow: hidden;
+  border-radius: 5px;
+
+  :global {
+    .ant-card-actions {
+      background: white;
+    }
+
+    .flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 12px;
+    }
+
+    .width {
+      width: 18px;
+      height: 18px
+    }
+
+    .baseline{
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .suppliesName{
+      color: #008dff;
+      font-size: 17px;
+    }
+    .pricePeople{
+      color: red;
+      .ant-typography{
+        color: #666;
+        font-size: 18px;
+      }
+    }
+    .ant-card-extra div {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

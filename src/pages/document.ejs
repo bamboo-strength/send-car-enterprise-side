@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="format-detection" content="telephone=yes"/>
+
+  <title>大车奔腾物流平台</title>
+<!--      <title>智慧矿山管控平台</title>-->
+<!--    <title>物迹福达网络货运平台</title>-->
+
+    <style type="text/css">
+      #contentInfo {
+        text-align: center;
+        margin-top: 40%;
+      }
+      #textInfo {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+      @-webkit-keyframes rotation {
+        0% {
+        transform: rotate(0deg);
+        }
+        100% {
+        transform: rotate(360deg);
+        }
+      }
+      #loader-8 {
+        width: 48px;
+        height: 48px;
+        border: 3px solid #1890FF;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        -webkit-animation: rotation 1s linear infinite;
+        animation: rotation 1s linear infinite;
+      }
+      #loader-8:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 31px;
+        border: 10px solid transparent;
+        border-right-color: #1890FF;
+        transform: rotate(-40deg);
+      }
+      #afterInfo {
+        text-align: left;
+        margin: 50px 0 0 20px;
+      }
+      #btnReload {
+        width: 110px;
+        height: 38px;
+        background-color: #1890FF;
+        line-height: 38px;
+        text-align: center;
+        color: #fff;
+        border-radius: 6px;
+        margin-left: 30%;
+        margin-top: 20px;
+      }
+    </style>
+    <script type="text/javascript">
+      setTimeout(() => {
+        var afterInfo=window.document.getElementById("afterInfo")
+        afterInfo.style.display = 'block'
+        let btnReload = window.document.getElementById('btnReload');
+        btnReload.onclick = function () {
+          location.reload();
+        };
+      }, 15000)
+    </script>
+</head>
+<body>
+<noscript>Sorry, we need js to run correctly!</noscript>
+    <div id="root">
+      <div id="contentInfo">
+        <div id="loader-8">
+        </div>
+        <div id="textInfo">资源加载中，请稍后...</div>
+        <div id="afterInfo" style="display: none;">
+          <div>
+            当前资源加载较慢，最可能的原因是：
+            <ul>
+              <li>当前手机网络较差</li>
+              <li>当前系统正在维护升级</li>
+            </ul>
+          </div>
+          <div>
+            您可以继续等待或尝试以下操作：
+            <ul>
+              <li>重新进入小程序：点击右上角三个点->重新进入小程序</li>
+              <li>清除微信缓存或者手机缓存</li>
+              <li>关闭微信后台运行进程后重新打开</li>
+              <li>拨打400-773-5868客服联系我们</li>
+            </ul>
+          </div>
+          <div id="btnReload">刷新重试</div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    window._AMapSecurityConfig = {
+        securityJsCode:'49774cf42a4f34e4bbf3b80e00af0429',  //高德地图密钥
+    }
+</script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+   <!--引入高德地图JSAPI -->
+<script src="//webapi.amap.com/maps?v=2.0&key=c9d92e6994ccdc2d49bae626ac442165&plugin=AMap.DistrictSearch,AMap.ControlBar,AMap.Geocoder"></script>
+   <!--引入UI组件库（1.1版本） -->
+<script src="//webapi.amap.com/ui/1.1/main.js"></script>

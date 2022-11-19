@@ -1,0 +1,302 @@
+@import '~antd/lib/style/themes/default.less';
+
+.inputItem {
+  :global {
+    .ant-input-number {
+      width: 100%;
+    }
+  }
+}
+
+/* 我的钱包--添加银行卡 开始 */
+.card {
+  // margin-bottom: 24px;
+  :global {
+    .cardLabel {
+      width: 85px;
+      color: #000;
+      font-Size: 17px;
+      margin-Right: 5px;
+    }
+
+    .ant-select {
+      flex: 1;
+
+      .ant-select-selection {
+        border: none;
+        font-size: 17px;
+
+        .ant-select-selection__rendered {
+          margin-left: 0 !important;
+        }
+      }
+    }
+    .inputItemDra{
+      height: 80px;
+      margin-top: 10px;
+      .am-input-label{
+        width: 20px !important;
+      }
+      .am-input-control{
+        border-bottom: 1px solid #dddddd;
+      }
+    }
+  }
+}
+
+:global {
+  .commonPageView {
+    .ant-form-item-control {
+
+      .ant-form-item-children {
+        span {
+          word-break: break-word;
+        }
+      }
+    }
+
+    .ant-card-head {
+      line-height: 50px;
+    }
+
+    .ant-card-head-title {
+      position: relative;
+      padding-left: 15px !important;
+    }
+
+    .ant-card-head-title::before {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 40%;
+      background: #40a9ff;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      left: 0;
+    }
+  }
+}
+
+/* 我的钱包--添加银行卡 结束 */
+
+.carousel01 {
+  background-image: url("../../public/product/product01.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 260px;
+}
+
+.carousel02 {
+  background-image: url("../../public/product/product02.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 260px;
+}
+
+.carousel03 {
+  background-image: url("../../public/product/product03.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 260px;
+}
+
+@font-face {
+  font-family: 'FZWBJW';
+  src: url("../../public/font/FZWBJW.TTF");
+}
+
+.banner01 {
+  width: 100%;
+  height: 100px !important;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .fontTitle {
+    font-size: 32px;
+    font-family: 'FZWBJW';
+    text-shadow: 0.1rem 0rem 0.1rem white, -0.1rem 0rem 0.1rem white, 0rem 0.1rem 0.1rem white, 0rem -0.1rem 0.1rem white;
+    color: #333;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.carouselh3 {
+  padding-top: 75px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 5px 2px 5px #000;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.iconPreview {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+}
+
+.tdTitle {
+  //width: 40%;
+  text-align: left;
+  color: gray;
+}
+
+.tdContent {
+  width: 60%;
+  text-align: left;
+  word-break: break-word;
+  color: #333333;
+}
+
+.tdTitleTwo {
+  width: 33% !important;
+  display: block;
+}
+
+
+.gridData {
+  :global {
+    .am-flexbox::after {
+      height: 0 !important;
+    }
+
+    .am-flexbox-item::before, .am-flexbox-item::after {
+      height: 0 !important;
+      width: 0 !important;
+    }
+
+    .am-flexbox-item.am-grid-item {
+      height: 90px;
+    }
+  }
+}
+
+.gridData::before, .gridData::after {
+  height: 0 !important;
+  width: 0 !important;
+}
+
+.menutitle {
+  :global {
+    .ant-card-head {
+      border-bottom: 0;
+      padding-left: 15px !important;
+    }
+
+    .ant-card-body {
+      padding-top: 0;
+      padding-bottom: 0px;
+    }
+
+    .am-grid-item-content {
+      padding: 0 !important;
+    }
+  }
+}
+
+:global {
+  .am-checkbox {
+    height: 100% !important;
+  }
+
+  .am-card-header {
+    //background: #f8f8f8;
+    //margin: 0 -12px !important;
+    .am-card-header-content {
+      font-weight: normal;
+    }
+  }
+
+  .am-card {
+    border-radius: inherit !important;
+  }
+
+  .am-card:not(.am-card-full)::before {
+    border-radius: inherit !important;
+    border: none !important;
+  }
+
+  .view-config {
+    padding: 0 15px !important;
+
+    .ant-form-item-label {
+      text-align: left !important;
+
+      label {
+        color: #999999;
+      }
+    }
+
+    .ant-form-item-control-wrapper {
+      text-align: right !important;
+    }
+  }
+
+  .am-card-body {
+    padding: 6px 0px !important;
+
+    .ant-row {
+      margin: 0 !important;
+    }
+  }
+
+  .flexForList {
+    flex-wrap: wrap;
+
+    .am-flexbox-item {
+      min-width: 25%;
+      max-width: 25%;
+      display: flex;
+      justify-content: center;
+      margin-top: 4px;
+      margin-left: 0;
+
+      .am-button {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 !important;
+        background: white;
+        border: 1px solid #108ee9;
+        color: #107ee9;
+      }
+
+      .am-button::before {
+        border: none !important;
+      }
+    }
+  }
+
+  // 弹窗 css
+  .am-list-line::after {
+    background: white !important;
+    height: 0 !important;
+  }
+
+  .listView {
+    .am-list {
+      position: static;
+      padding-bottom: 0;
+    }
+
+    .am-list-body::before, .am-list-body::after {
+      background: white !important;
+      height: 0 !important;
+    }
+  }
+}
+
+
+
+

@@ -1,0 +1,307 @@
+:global{
+  .epidemic-title,.epidemic-title2{
+    padding: 10px 25px;
+    position: relative;
+    font-size: 14px;
+  }
+
+  .epidemic-title::before,.epidemic-title2::before {
+    content: '';
+    width: 5px;
+    height: 20px;
+    background: #1890ff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 15px;
+  }
+  .epidemic-title2{
+    padding: 0 10px;
+  }
+  .epidemic-title2::before{
+    left: 0;
+  }
+  .edip-acc{
+    .am-accordion-header{
+      background: #f0f2f5 !important;
+    }
+  }
+  .epidemic-img{
+    width: 80px !important;
+    height: 60px !important;
+  }
+  .btn-bg{
+    background: white;
+    padding: 15px 0;
+  }
+  .card-list{
+    margin:12px !important;
+    box-Shadow:#ddd 0 0 5px 0;
+    .am-list-item .am-list-line .am-list-content{
+      color: #888;
+      text-align: right;
+    }
+    .am-list-item .am-list-line .am-list-extra{
+      color: black;
+      flex-basis: 60%;
+      text-align: left;
+
+    }
+  }
+  .list-item{
+    .am-list-content{
+      white-space: normal !important;
+    }
+    .am-list-extra{
+      flex-basis: auto !important;
+    }
+  }
+  .billing-details {
+    margin: 40px 10px 10px;
+    background: white;
+    border-radius: 4px;
+    padding: 15px;
+
+    .icon-title {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      img {
+        width: 60px;
+        height: 60px;
+        margin: -40px auto 10px;
+      }
+    }
+
+    .am-list-extra {
+      flex-basis: auto !important;
+    }
+  }
+
+  // 正式排队
+  .queueCardStyle{
+    width: 90%;
+    height: 170px;
+    background-image: linear-gradient(to right,#6492F7,#4D7BF6,#3563F5);
+    margin: 0 auto;
+    border-radius: 10px;
+    text-align:center;
+    box-shadow: 4px 8px 4px #d9e1f8;
+    color: #f9f5f5
+  }
+  .joinQueueCard{
+    //width: 90%;
+    height: 75px;
+    background-color: white;
+    margin: 20px auto;
+    borderRadius: 10px;
+    text-align:center;
+    box-shadow: 4px 8px 4px #d9e1f8;
+    color: black;
+    padding:10px 0px;
+    border-radius: 10px;
+  }
+  .outRangeCard{
+    width: 95%;
+    height: 180px;
+    background-color: white;
+    margin: 20px auto;
+    borderRadius: 10px;
+    box-shadow: 4px 8px 4px #d9e1f8;
+    color: black;
+    padding:10px
+  }
+  .msgCard{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    text-align:center;
+    padding-top:20px;
+    color:black;
+    background-color: white;
+    width: 90%;
+    margin: 0px auto;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .epidemic{
+    .am-list-item{
+      padding-left: 0;
+      background: #f0f2f5;
+      margin: 5px 0px;
+    }
+  }
+  .payModal{
+    width:320px;
+    .am-modal-header{
+      border-bottom: solid 1px lightgray;
+    }
+    .am-modal-title{
+      font-size: 15px;
+      text-align: left;
+    }
+    .am-list {
+      border: solid 1px lightgray;
+      position: absolute;
+      top: 60px;
+      width: 90%;
+      background: #f0f2f5;
+      margin-top: 50px;
+    }
+    .am-list-item{
+      min-height: 35px;
+      .am-list-content{
+        color: #888;
+        font-size: 14px !important;
+        white-space: normal;
+      }
+      .am-list-extra{
+        color: black;
+      }
+    }
+    .totalMoneySty{
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: black;
+    }
+    .delayServiceFee{
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      color: black;
+      height: 40px;
+      line-height: 40px;
+    }
+    .toastText{
+      margin-top: 12px;
+      font-size: 16px;
+      color: black;
+      text-align: left;
+    }
+  }
+  .delayService{
+    width: 90%;
+    margin: 0px auto;
+    .delayServiceMsg{
+      height: 40px;
+      border: solid 1px red;
+      line-height: 40px;
+      text-align: center;
+      background-color: #f4d4d4;
+      margin: 20px 0px;
+    }
+  }
+  .billModalStyle{
+    .ant-modal-header{
+      background-color: #7865e0;
+      border: none;
+      .ant-modal-title{
+        color: white;
+        text-align: center;
+      }
+    }
+    .sendAndReceive{
+      color: black;
+      border: solid 1px darkgray;
+      padding-top: 20px;
+      padding-left: 10px;
+      border-radius: 15px;
+      text-align: left;
+      background-color: white;
+    }
+    .qrContentStyle{
+      color: darkslategray;
+    }
+  }
+  .billMobileModalStyle{
+    width: 100%;
+    .am-modal-body{
+      padding: 5px 5px 15px !important;
+    }
+  }
+  // 电子提货单表格样式
+  .qrModal{
+    .ant-modal-content{
+      height: 680px;
+      overflow: auto;
+    }
+  }
+  .tableSty{
+    width: 570px;
+    box-sizing: content-box;
+    margin: 15% auto;
+    padding: 5px 20px;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+    font-family:'宋体';
+    font-weight: bold;
+    tr{
+      height: 50px;
+    }
+    background-color: #e8dede;
+    .topText{
+      position: relative;
+      width: 40%;
+      margin: 5px auto;
+      border-bottom: 5px double;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .noStyle{
+      position: absolute;
+      left: 115%;
+      top: 11%;
+      color: red;
+      font-weight: bold;
+    }
+  }
+  // 拆分功能展示拆分张数及按钮
+  .showRemainAndBtn{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+  }
+}
+
+//card
+style
+{
+  .content {
+    height: 50px;
+  }
+
+  .footer {
+    padding-top: 11px;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 16px
+  }
+
+  .customBody {
+    color: var(--adm-color-success);
+  }
+}
+
+
+.shine{
+  margin-top: 150px;
+  text-align: center;
+  //text-shadow: 0 0 3px #0ebeff, 0 0 5px #0ebeff, 0 0 20px #0ebeff, 0 0 50px #0ebeff;
+  text-shadow: 0 0 3px red, 0 0 5px red, 0 0 20px red, 0 0 50px #ff0000;
+  animation: aaa 0.5s infinite alternate;
+}
+@keyframes aaa{
+  0%{
+    text-shadow: unset;
+  }
+  100%{
+    //text-shadow: 0 0 3px #0ebeff, 0 0 5px #0ebeff, 0 0 20px #0ebeff, 0 0 50px #0ebeff;
+    text-shadow: 0 0 3px red, 0 0 5px red, 0 0 20px red, 0 0 50px red;
+  }
+}

@@ -1,0 +1,672 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~antd/dist/antd.less';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.colorWeak {
+  filter: invert(80%);
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+
+canvas {
+  display: block;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  :global {
+    .separator {
+      background-Color: #f0f2f5;
+      height: 8px
+    }
+
+    .list-view-round{
+      .am-list-body{
+        background: none !important;
+        .list-view-section-body>div{
+          margin: 10px;
+          border-radius: 5px;
+          overflow: hidden;
+        }
+      }
+      .ant-card-head{
+        min-height: auto !important;
+      }
+    }
+
+    .matrix-popover {
+      .ant-popover-inner-content {
+        padding: 5px 10px;
+      }
+    }
+
+    .am-modal-body {
+      .ant-select-dropdown {
+        position: fixed !important;
+      }
+    }
+
+    .mobile-select {
+      flex: 1;
+
+      .ant-select-selection, .ant-input, .ant-cascader-picker {
+        border: none !important;
+        box-shadow: none !important;
+
+        &:focus, &:active {
+          box-shadow: none !important;
+        }
+      }
+
+      .ant-select-selection__rendered,.ant-select-selection__placeholder {
+        margin-left: 0 !important;
+        font-size: 17px;
+      }
+
+      .ant-input,.ant-cascader-picker-label {
+        padding-left: 0 !important;
+        font-size: 17px !important;
+      }
+    }
+
+    .add-area {
+      flex: 1;
+    }
+
+    .am-list-item.am-input-item {
+      height: 100%;
+
+      .am-input-control input {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    /* 报表开始 */
+
+    .theReport {
+      .ant-table-content > .ant-table-body {
+        margin: 0 !important;
+      }
+    }
+
+    /* 报表结束 */
+
+    /* 移动端时间框样式开始 */
+
+    .listItem {
+      min-height: 32px;
+      height: 32px;
+      padding: 0;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      overflow: hidden;
+
+      .am-list-line {
+        border-bottom: none !important;
+        justify-content: space-between;
+        padding-right: 11px;
+
+        .am-list-extra {
+          margin-left: 11px !important;
+          flex: 1;
+          text-align: left;
+          font-size: 14px;
+        }
+
+        .am-list-arrow {
+          background-image: url("../public/image/icon_time.png") !important;
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+    /* 移动端时间框样式结束 */
+    /* 司机认证开始 */
+
+    .uploader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .ant-upload {
+        margin: 0 !important;
+        margin-bottom: 10px !important;
+      }
+    }
+
+    .iteams {
+      .ant-row {
+        margin: 0 !important;
+      }
+
+      .add-config {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
+    }
+
+    /* 司机认证结束 */
+
+    .ant-input::-webkit-input-placeholder {
+      color: #9A9A9A;
+    }
+
+    .ant-input::-moz-placeholder {
+      color: #9A9A9A
+    }
+
+    .antd-pro-layouts-user-layout-container {
+      background: url("../public/tenant/joinus/pics/login.jpg") !important;
+      background-size: 100% !important;
+    }
+
+    .ant-calendar-input-wrap {
+      display: none;
+    }
+
+    .ant-input::-ms-input-placeholder {
+      color: #9A9A9A
+    }
+
+    .menuMore {
+      padding: 8px;
+      background: white;
+      box-shadow: 0 0 5px #66666661;
+      border-radius: 5px;
+
+      div:nth-child(1) {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 8px;
+      }
+
+      div:nth-child(2) {
+        padding-top: 8px;
+      }
+    }
+
+    .ant-carousel .slick-slide {
+      color: #fff;
+      height: 184px;
+      overflow: hidden;
+      line-height: 260px;
+      text-align: center;
+      background: white;
+    }
+
+    .ant-card-body {
+      padding: 8px 15px;
+    }
+
+    .ant-form-item-control {
+      line-height: 30px;
+      /*height: 50px;*/
+    }
+
+    .content {
+      .ant-form-item-control {
+        height: auto !important;
+        word-wrap: break-word;
+      }
+    }
+
+    .ant-form-explain, .ant-form-extra {
+      width: max-content;
+      min-height: 12px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    // 文本域高度不够
+    #taSty .ant-form-item {
+      margin-bottom: 44px;
+    }
+
+    .ant-upload-select-picture-card {
+      width: 150px !important;
+      height: 150px !important;
+    }
+
+    .am-navbar {
+      position: fixed;
+      width: 100%;
+      z-index: 99;
+      border-bottom: 1px solid #F8F8F8;
+    }
+
+    .am-navbar::after {
+      content: '';
+      position: absolute;
+      background-color: #ddd;
+      display: block;
+      z-index: 1;
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1PX;
+      transform-origin: 50% 100%;
+      transform: scaleY(0.33);
+    }
+
+    .am-list.my-list {
+      position: initial;
+      top: 45px;
+      width: 100%;
+      padding-bottom: 84px;
+    }
+
+    .am-list {
+      position: absolute;
+      top: 45px;
+      width: 100%;
+      //padding-bottom: 84px;
+      background: #f0f2f5;
+
+      .am-button {
+        margin: 5px 12px;
+      }
+    }
+
+    .am-list-nestPage {
+      position: absolute;
+      width: 100%;
+      padding-bottom: 84px;
+      background: #f0f2f5;
+
+      .am-button {
+        margin: 5px 12px;
+      }
+    }
+
+    .am-list-body::before, .am-list-body::after {
+      height: 0 !important;
+    }
+
+    .static-list {
+      position: static !important;
+      padding-bottom: 0;
+    }
+
+    .icon_name {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: center;
+      border-radius: 0 !important;
+    }
+
+    .card-header::before {
+      border-radius: 0 !important;
+      border: 0 !important;
+    }
+
+    .shipper_list {
+      margin-top: 10px;
+
+      .am-list-item.am-list-item-middle::after {
+        content: "";
+        height: 1px;
+        background: #ddd;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        transform: scaleY(0.5);
+      }
+    }
+
+    .toload, .Intheload {
+      color: rgb(16, 142, 233);
+    }
+
+    //.ant-card-bordered {
+    //  border: 0 !important;
+    //}
+    //.list-view-section-body>div:nth-child(even){
+    //  background: red;
+    //}
+    .dataPage_list {
+      margin-top: 5px;
+
+      /*  .ant-card-head-wrapper {
+          padding: 0 3%;
+        }*/
+
+      .ant-card-body {
+        padding: 8px 0 !important;
+      }
+
+      .anticon {
+        width: 24px;
+        text-align: left;
+      }
+
+      .dapaPage_span {
+        margin-left: 24px;
+      }
+    }
+
+    .dataPage_echarts {
+      margin: 0 !important;
+    }
+
+    .dataPage_card {
+      .ant-card-body {
+        padding: 8px;
+      }
+    }
+
+    .view-config {
+      .ant-form-item-label {
+        text-align: right;
+      }
+    }
+
+    .imgBg {
+      display: flex;
+      flex-Direction: column;
+      justify-Content: center;
+      align-Items: center;
+      margin-bottom: 10px;
+      margin-top: 10px;
+
+      .ant-col {
+        padding: 0 !important;
+
+        img {
+          width: 100%;
+          border: 1px solid #dddddd;
+          height: 100px;
+          border-radius: 3px;
+          object-fit: cover;
+        }
+      }
+
+      .colabel {
+        text-Align: center;
+        margin-Top: 5px;
+      }
+    }
+
+    .labelTitle {
+      padding: 0 10px;
+      border-left: 5px solid #1890ff;
+      margin: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .labelTitle2 {
+      border-left: 5px solid #faad14 !important;
+    }
+
+    .youhui {
+      color: rgb(24, 144, 255);
+      height: 20px;
+      font-size: 14px;
+    }
+
+    .youhui::before {
+      border: none !important;
+    }
+
+    .cardAvatar {
+      .ant-card-meta-avatar {
+        width: 90px;
+        height: 90px;
+        padding: 0;
+        margin-top: 5px;
+        margin-right: 10px;
+
+        .avatar {
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    /* 车辆认证页面开始 */
+
+    .am-list-item.am-input-focus .am-input-clear {
+      margin-left: 10px;
+    }
+
+    .imageUploadRow {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 15px 6px 0;
+
+      .imageUpload {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .ant-upload {
+          margin-bottom: 15px;
+          margin-right: 0;
+        }
+      }
+    }
+
+    /* 车辆认证页面结束 */
+
+    .outBasicStyle{ // router不在/ 下的页面样式调整
+      .am-list{
+        height:100%
+      }
+      .ant-card-meta-title{
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+.globalSpin {
+  width: 100%;
+  margin: 40px 0 !important;
+
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+@media screen and (max-width: @screen-sm) {
+  body {
+    :global {
+      .ant-card-head {
+        padding: 0 10px;
+      }
+
+      .ant-card-head-title {
+        padding: 8px 0;
+      }
+
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: @screen-xs) {
+  .ant-table {
+    width: 100%;
+    overflow-x: auto;
+
+    &-thead > tr,
+    &-tbody > tr {
+      > th,
+      > td {
+        white-space: pre;
+
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+.add-config {
+  padding: 0 !important;
+
+  :global {
+    @media (max-width: 575px) {
+      .ant-col-xs-24.ant-form-item-label {
+        padding: 0 !important;
+      }
+    }
+    // 车辆认证横线显示
+    .am-list-line {
+      border-bottom: 1px solid #ddd !important;
+
+      .am-input-control input {
+        text-align: right;
+        font-size: 16px;
+      }
+    }
+
+    .ant-col {
+      padding: 0 !important;
+    }
+
+    .ant-input-wrapper {
+      overflow: hidden;
+    }
+
+    .ant-form-item-label {
+      height: 32px;
+      line-height: 32px;
+      margin-bottom: 20px;
+    }
+
+    // 只读文本框文字颜色加深
+    .ant-input[disabled] {
+      color: rgba(0, 0, 0, 0.65) !important;
+    }
+  }
+}
+
+.query-config {
+  .ant-form-item-label {
+    margin-bottom: 12px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .ant-form-item-label label::after {
+    display: inline-block !important;
+  }
+}
+
+.inputError {
+  position: absolute;
+  z-index: 9999;
+  top: -20px;
+  right: 12px;
+  padding: 5px 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px #00000026;
+  border-radius: 5px;
+  color: red;
+}
+
+.inputError:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: -6px;
+  right: 8px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid white;
+}
+
+.errorlistItem {
+  color: red;
+  min-Height: auto !important;
+  //margin-top: -8px;
+  font-size: 12px;
+}
+
+.cerTification { // 认证相关样式
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .am-list-item {
+    padding: 0;
+
+    .uploadImage {
+      .ant-upload-select-picture-card {
+        margin: 0;
+        width: 180px !important;
+        height: 130px !important;
+
+        .uploadIcon {
+          top: 35px !important;
+        }
+      }
+    }
+  }
+
+  .errorlistItem {
+    margin-top: 0 !important;
+  }
+}
+
+.cerText {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.kswallet{
+  background: linear-gradient(45deg, rgb(21, 240, 186), rgb(21, 71, 242));
+  margin: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  :global{
+    .imgRound{
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      img{
+        width: 60%;
+      }
+    }
+  }
+}
+

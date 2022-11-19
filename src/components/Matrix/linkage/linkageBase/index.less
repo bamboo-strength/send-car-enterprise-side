@@ -1,0 +1,99 @@
+// $height 控制滚动区高度，建议为3的整数倍
+// $fontSize控制字体大小
+// $linearGradient控制渐变区域
+// $height: 150px;
+// $fontSize: 14px;
+// $linearGradient: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), #fff);
+
+.linkageBaseWrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  flex-flow: column;
+  font-size: 14px;
+  user-select: none;
+  &.hide {
+    display: none;
+  }
+  .holderBox {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .mainBox {
+    background: #fff;
+    .btnBar {
+      display: flex;
+      justify-content: space-between;
+      .btn {
+        display: flex;
+        align-items: center;
+        height: 46px;
+        padding: 0 15px;
+      }
+      .btnAction {
+        color: #108ee9;
+        padding: 9px 11px;
+        font-size: 17px;
+      }
+    }
+    .listOuter {
+      position: relative;
+      border-top: 1px solid #ccc;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), #fff);;
+      }
+      .listInner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-around;
+        height: 150px;
+        overflow: hidden;
+        .listBox {
+          &:before,
+          &:after {
+            content: '';
+            display: block;
+            height: 150px / 3;
+          }
+          .itemBox {
+            height: 150px / 3;
+            line-height: 150px / 3;
+            text-align: center;
+            padding: 0 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+      .lineBox {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        .line {
+          flex: 1;
+          height: 100%;
+          &:nth-child(n + 2) {
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,207 @@
+@import '~antd/lib/style/themes/default.less';
+@import '~antd-mobile/es/swipe-action/style/index.less';
+@import '~antd-mobile/es/search-bar/style/index.less';
+@import '~antd-mobile/es/list/style/index.less';
+@import '~antd-mobile/es/card/style/index.less';
+
+.content {
+  margin: 0px 0px 84px 0px;
+  //  padding-top: 5px;
+}
+
+:global {
+  .ant-layout,
+  .ant-layout * {
+    box-sizing: border-box;
+    line-height: 1.5;
+  }
+
+  .am-swipe-actions {
+    flex-wrap: wrap;
+  }
+
+  .am-swipe-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 10px 10px 0px 10px;
+    padding: 0px 10px;
+    border-radius: 12px;
+    height: 32px;
+    box-shadow: 1px 1px 2px 1px #80808073;
+  }
+
+  .am-swipe {
+    background-color: ghostwhite;
+  }
+
+  .onlineBtn {
+    margin-top: 24px;
+    height: 47px !important;;
+    line-height: 47px !important;
+  }
+
+  .avoid_pre {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 20px 0;
+
+    .ant-divider {
+      width: 30%;
+      height: 4px;
+      min-width: 30%;
+      background: #1890ff;
+      border-radius: 2px;
+      margin: 18px 0;
+    }
+
+    .pre_div {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        width: 40px;
+        height: 40px;
+        background: #1890ff;
+        border-radius: 50%;
+        color: white;
+        font-size: 20px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .pre_div2 {
+      p {
+        border: 5px solid #ddd;
+        background: none;
+        color: #666666;
+      }
+    }
+  }
+
+  .avoid_list {
+    padding: 0 20px !important;
+    background: white;
+
+    .ant-list-item {
+      display: flex;
+      align-items: center;
+
+      div {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .card_avoid {
+    .ant-card-body {
+      padding: 16px 20px !important;
+    }
+  }
+
+  .drawerBox {
+    .ant-drawer-content-wrapper {
+      height: 360px !important;
+    }
+
+    .ant-drawer-wrapper-body {
+      position: relative;
+    }
+
+    .ant-drawer-header {
+      position: fixed;
+      z-index: 11;
+      width: 100%;
+      text-align: center;
+    }
+
+    .ant-drawer-body {
+      margin-top: 55px;
+      padding: 10px 16px 16px;
+    }
+
+    .drawerTitle {
+      position: relative;
+
+      .drawerIcon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        font-size: 20px;
+        color: #999;
+      }
+    }
+
+    .ridioDiv {
+      display: flex;
+      align-items: center;
+
+      .radioStyle {
+        display: block !important;
+        border-bottom: 1px solid #aaa;
+        width: 100%;
+        margin: 0 !important;
+        padding: 15px 0;
+        height: 22px;
+        box-sizing: content-box !important;
+
+        .ant-radio {
+          float: right;
+          margin-top: 3px;
+        }
+
+        span {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+
+  .am-card {
+   // padding: 0px 12px;
+    padding: 0px 12px 15px 12px;
+  }
+
+  .hidediv div {
+    display: none;
+  }
+
+  .am-search-input {
+    border-radius: 12px !important;
+  }
+
+  .am-list-item .am-list-line .am-list-content {
+    flex: 1 1;
+    color: #000;
+    //font-size: 14px !important;
+    line-height: 1.6;
+    text-align: left;
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+  // 控制主子表形式 card-hearder上下距离过长
+  .listView .am-card-header {
+    padding: 0px 15px;
+  }
+
+  .listView .am-card-header-content {
+    color: darkorange;
+    font-family: 黑体;
+  }
+
+}
