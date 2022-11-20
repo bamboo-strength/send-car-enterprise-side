@@ -81,14 +81,23 @@ class Menu extends PureComponent {
     //     },
     //   ]);
     // }
+    // this.getArea();
   }
 
+  // 获取省市区数据
+  getArea = () => {
+    // const param = { code: '100000', tenantId: '764537' };
+    // rTree(param).then(resp => {
+    //   const district = resp.data[0].children;
+    //   localStorage.setItem('areaData', JSON.stringify(district));
+    // });
+  };
 
   goPage = path => {
     router.push({
       pathname: path,
       state: {
-        backUrl: '/shashi/Yamei/inspectVehicleForYamei/1',
+        backUrl: '/dashboard/menu',
       },
     });
   };

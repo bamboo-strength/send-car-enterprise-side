@@ -27,7 +27,7 @@ class Function extends PureComponent {
           {
             icon: null,
             name: '派车单查询',
-            path: '/dashboard/cheliangjiankong'
+            path: '/truck/order'
           }
         ]
       }

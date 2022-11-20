@@ -772,6 +772,12 @@ export default [
     ],
   },
   {
+    path: '/truck',
+    routes: [
+      { path: '/truck/order', component: './TruckingOrder/list' },
+    ]
+  },
+  {
     path: '/',
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
@@ -1362,6 +1368,5 @@ export default [
         ]
       },
     ],
-  },
-
+  }
 ];
