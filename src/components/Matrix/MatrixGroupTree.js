@@ -3,7 +3,6 @@ import { Form,TreeSelect } from 'antd';
 import func from '@/utils/Func';
 import { getTenantId } from '../../pages/Merchants/commontable';
 import { tree } from '@/services/dept';
-import { currentTenant} from '../../defaultSettings';
 import {isAdminDetail} from '../../services/DongPing/common'
 import { getCurrentUser } from '@/utils/authority';
 
@@ -16,7 +15,7 @@ class MatrixGroupTree extends PureComponent {
     this.state = {
       deptTrees:[],
       initialValueDept:undefined,
-      ifJinshi:currentTenant === '847975'
+      ifJinshi: false
     };
   }
 

@@ -93,34 +93,6 @@ class PersonalCen extends React.Component {
     });
   }
 
-  // handleOk = () => { // 区分大车奔腾与砂石
-  //   if(currentTenant === 'login'){
-  //     if (project === 'wlhy'){
-  //       window.location.href = 'https://www.pgyer.com/esnz';
-  //     }else if (clientId === 'kspt_driver'){
-  //       window.location.href = 'https://www.pgyer.com/PB4q';
-  //     }else if (clientId === 'kspt_shf'){
-  //       window.location.href = 'https://www.pgyer.com/6H9w';
-  //     }else if (clientId === 'kspt_cyf'){
-  //       window.location.href = 'https://www.pgyer.com/BR6H';
-  //     }else { // 企业端
-  //       window.location.href = 'https://www.pgyer.com/q5FX';
-  //     }
-  //   }else if(currentTenant === '847975') {
-  //     if (clientId === 'kspt_driver'){
-  //       window.location.href = 'https://www.pgyer.com/8MiF';
-  //     }else if (clientId === 'kspt_shf'){
-  //       window.location.href = 'https://www.pgyer.com/qS0V';
-  //     }else { // 企业端
-  //       window.location.href = 'https://www.pgyer.com/C4Bn';
-  //     }
-  //   }
-  //
-  //   this.setState({
-  //     visible: false,
-  //   });
-  // };
-
   handleCancel = () => {
     this.setState({
       visible: false,

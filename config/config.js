@@ -28,20 +28,20 @@ const plugins = [
       },
       pwa: pwa
         ? {
-          workboxPluginMode: 'InjectManifest',
-          workboxOptions: {
-            importWorkboxFrom: 'local',
-          },
-        }
+            workboxPluginMode: 'InjectManifest',
+            workboxOptions: {
+              importWorkboxFrom: 'local',
+            },
+          }
         : false,
       ...(!TEST && os.platform() === 'darwin'
         ? {
-          dll: {
-            include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
-            exclude: ['@babel/runtime'],
-          },
-          hardSource: false,
-        }
+            dll: {
+              include: ['dva', 'dva/router', 'dva/saga', 'dva/fetch'],
+              exclude: ['@babel/runtime'],
+            },
+            hardSource: false,
+          }
         : {}),
     },
   ],
@@ -62,7 +62,7 @@ export default {
   // add for transfer to umi
   plugins,
   history: 'hash',
-  hash:true,
+  hash: true,
   define: {
     APP_TYPE: APP_TYPE || '',
   },
@@ -70,6 +70,7 @@ export default {
   targets: {
     ie: 11,
   },
+  publicPath: './',
   // 路由配置
   routes: pageRoutes,
   // Theme for antd
@@ -82,7 +83,7 @@ export default {
     '/api': {
       // target: 'http://122.112.251.17:81', // 新测试服务器
       // target: 'http://36.133.124.14:81',
-      target: 'http://119.3.13.80:81',
+      // target: 'http://119.3.13.80:81',
       // target: 'http://192.168.0.108:81', // hys
       // target: 'http://192.168.31.196:81', //郭辉
       // target: 'http://192.168.0.114:81', //
@@ -91,7 +92,7 @@ export default {
       // target: 'http://122.112.174.71:181', // 71
       // target: 'http://192.168.0.114:81', // 赵宁
       // target: 'http://36.137.165.166:81', //
-      // target: 'http://122.112.140.134:81',  //新正式服务器
+      target: 'http://122.112.140.134:81', //新正式服务器
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },
@@ -102,13 +103,13 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/freight': '' },
     },
-    '/NetSign': {   //网签
+    '/NetSign': {
+      //网签
       // target: 'http://60.167.168.148:88',
       target: 'http://122.112.174.71:181',
       changeOrigin: true,
       pathRewrite: { '^/NetSign': '' },
     },
-
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
@@ -138,11 +139,8 @@ export default {
     },
   },
   manifest: {
-    basePath: '/',
+    basePath: './',
   },
 
   chainWebpack: webpackPlugin,
 };
-
-
-

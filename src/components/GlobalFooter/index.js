@@ -10,6 +10,7 @@ const GlobalFooter = ({ className, links, copyright }) => {
         <div className={styles.links}>
           {links.map(link => (
             <a
+              rel="noreferrer"
               key={link.key}
               title={link.key}
               target={link.blankTarget ? '_blank' : '_self'}

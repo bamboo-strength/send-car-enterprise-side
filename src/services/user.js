@@ -1,41 +1,11 @@
 import { stringify } from 'qs';
-import { message } from 'antd';
 import request from '../utils/request';
 import func from '../utils/Func';
 // =====================用户===========================
 
 export async function accountLogin(params) {
   const data = func.toFormData(params);
-  data.append('grant_type', 'password');
-  data.append('scope', 'all');
-  if(params.tenantId === 'login'){
-    return request('/api/shipper-auth/oauth/token', {
-      method: 'POST',
-      body: data,
-    });
-  }
-    return request('/api/shipper-auth/oauth/token', {
-      headers: {
-        'Tenant-Id': data.get('tenantId'),
-      },
-      method: 'POST',
-      body: data,
-    });
-}
-
-export async function tokenLogin(params) {
-  const data = func.toFormData(params);
-  const token = data.get('token');
-  data.append('grant_type', 'password');
-  data.append('scope', 'all');
-  data.append("username","token");
-  data.append("password","token");
-  data.delete("token");
   return request('/api/shipper-auth/oauth/token', {
-    headers: {
-      'Tenant-Id': data.get('tenantId'),
-      'Blade-Auth':token
-    },
     method: 'POST',
     body: data,
   });

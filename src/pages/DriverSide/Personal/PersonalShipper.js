@@ -160,14 +160,6 @@ class PersonalShipper extends React.Component {
           <Card className='card-header'>
             <Card.Header title={title} thumb={`${logoImgUrl}/personalImg/${tenantId}.jpg`} thumbStyle={{ width: '20%' }} />
           </Card>
-          {
-            currentTenant === '847975' && (
-              <div className={style.kswallet} onClick={()=>router.push('/kswallet/wallhomepage')}>
-                <div className="imgRound"><img src={U87} alt='' /></div>
-                我的钱包
-              </div>
-            )
-          }
           <List className='static-list shipper_list'>
             {
               clientId !=='kspt'?

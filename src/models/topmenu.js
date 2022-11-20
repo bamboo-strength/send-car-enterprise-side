@@ -2,13 +2,7 @@ import { message } from 'antd';
 import router from 'umi/router';
 import { TOP_MENU_NAMESPACE } from '../actions/topmenu';
 import { list, submit, detail, remove } from '../services/topmenu';
-import {
-  dynamicButtons,
-  dynamicRoutes,
-  topMenuTree,
-  topMenuTreeKeys,
-  topMenuGrant,
-} from '../services/menu';
+import { dynamicRoutes, topMenuTree, topMenuTreeKeys, topMenuGrant } from '../services/menu';
 import { setButtons, setRoutes } from '../utils/authority';
 import { formatButtons, formatRoutes } from '../utils/utils';
 

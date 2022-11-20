@@ -201,6 +201,9 @@ export function formatTopMenus(menus) {
 
 export function formatRoutes(routes) {
   function format(arr) {
+    if (!arr.length) {
+      return [];
+    }
     arr.forEach(node => {
       const item = node;
       if (item.children && Array.isArray(item.children)) {
@@ -210,7 +213,7 @@ export function formatRoutes(routes) {
       if (item.isOpen > 1) {
         item.target = '_blank';
       }
-      item.cnName = item.name
+      item.cnName = item.name;
       item.name = item.code;
       if (item.source) {
         item.icon = item.source;
@@ -228,6 +231,9 @@ export function formatRoutes(routes) {
 }
 
 export function formatButtons(buttons) {
+  if (!buttons || !buttons.length) {
+    return [];
+  }
   return buttons.map(item => {
     return {
       code: item.code,
@@ -242,60 +248,61 @@ export function formatButtons(buttons) {
  */
 export function getInner() {
   if (typeof window.innerWidth !== 'undefined') {
-    return   {
-        width : window.innerWidth,
-        height : window.innerHeight
-      }
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
   }
   return {
-      width : document.documentElement.clientWidth,
-      height : document.documentElement.clientHeight
-  }
-
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight,
+  };
 }
 
 /**
  * 获取表单查询条件
  */
 export function getFormValues() {
-  return JSON.parse(localStorage.getItem("formValues") || '{}')
+  return JSON.parse(localStorage.getItem('formValues') || '{}');
 }
 
-export function flexCenter ($justifyContent, $alignItems, $flexDirection) {
+export function flexCenter($justifyContent, $alignItems, $flexDirection) {
   return {
-    display : 'flex',
-    flexDirection : $flexDirection ? $flexDirection : 'row',
-    justifyContent : $justifyContent ? $justifyContent : 'center',
-    alignItems : $alignItems ? $alignItems : 'center'
-
-  }
+    display: 'flex',
+    flexDirection: $flexDirection ?? 'row',
+    justifyContent: $justifyContent ?? 'center',
+    alignItems: $alignItems ?? 'center',
+  };
 }
 
-export function IEVersion (){
+export function IEVersion() {
   const userAgents = navigator.userAgent; // 取得浏览器的userAgent字符串
-  const isIE = userAgents.indexOf("compatible") > -1 && userAgents.indexOf("MSIE") > -1; // 判断是否IE<11浏览器
-  const isEdge = userAgents.indexOf("Edge") > -1 && !isIE; // 判断是否IE的Edge浏览器
-  const isIE11 = userAgents.indexOf('Trident') > -1 && userAgents.indexOf("rv:11.0") > -1;
-  if(isIE) {
-    const reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+  const isIE = userAgents.indexOf('compatible') > -1 && userAgents.indexOf('MSIE') > -1; // 判断是否IE<11浏览器
+  const isEdge = userAgents.indexOf('Edge') > -1 && !isIE; // 判断是否IE的Edge浏览器
+  const isIE11 = userAgents.indexOf('Trident') > -1 && userAgents.indexOf('rv:11.0') > -1;
+  if (isIE) {
+    const reIE = new RegExp('MSIE (\\d+\\.\\d+);');
     reIE.test(userAgents);
-    const fIEVersion = parseFloat(RegExp["$1"]);
-    if(fIEVersion === 7) {
+    const fIEVersion = parseFloat(RegExp['$1']);
+    if (fIEVersion === 7) {
       return 7;
-    } else if(fIEVersion === 8) {
-      return 8;
-    } else if(fIEVersion === 9) {
-      return 9;
-    } else if(fIEVersion === 10) {
-      return 10;
-    } else {
-      return 6; // IE版本<=7
     }
-  } else if(isEdge) {
-    return 'edge';// edge
-  } else if(isIE11) {
-    return 11; // IE11
-  }else{
-    return -1;// 不是ie浏览器
+    if (fIEVersion === 8) {
+      return 8;
+    }
+    if (fIEVersion === 9) {
+      return 9;
+    }
+    if (fIEVersion === 10) {
+      return 10;
+    }
+    return 6;
   }
+  if (isEdge) {
+    return 'edge'; // edge
+  }
+  if (isIE11) {
+    return 11; // IE11
+  }
+  return -1; // 不是ie浏览器
 }

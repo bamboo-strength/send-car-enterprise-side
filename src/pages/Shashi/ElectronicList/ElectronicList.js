@@ -174,14 +174,6 @@ class ElectronicList extends Component {
 
   }
 
-  test=()=>{
-    // http://test.minio.dachebenteng.com/847975-kspt-driver/upload/2021/10/11/1447407329472540674%E7%94%B5%E5%AD%90%E7%A3%85%E5%8D%95.pdf
-  //  const aa = 'http://test.minio.dachebenteng.com/847975-kspt-driver/upload/2021/10/11/1447407329472540674%E7%94%B5%E5%AD%90%E7%A3%85%E5%8D%95.pdf'
-   const aa = 'http://test.minio.dachebenteng.com/847975-kspt-driver/upload/2021/06/26/220shashi_driver_admin1408716730900942849blob'
-    wx.miniProgram.navigateTo({url: `/pages/shashi/download?url=${aa}`})
-  }
-
-
   downloadFile=()=>{
     if(window.__wxjs_environment === 'miniprogram'){ // 微信小程序
       this.downloadImg()
@@ -195,9 +187,6 @@ class ElectronicList extends Component {
     const currentTenant = getCurrentUser().tenantId;
     if(currentTenant === '947229' ){
       return  <TableFor947229 detailData={detailData} />
-    }
-    if(currentTenant === '847975'){
-      return <TableFor847975 detailData={detailData} />
     }
     if(currentTenant === '187382'){ // 宝兴
       return <TableFor187382 detailData={detailData} />

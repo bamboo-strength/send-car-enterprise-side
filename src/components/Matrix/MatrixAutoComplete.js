@@ -120,12 +120,6 @@ export default class MatrixAutoComplete extends PureComponent {
     }
     if (bringData) {  // 需要查找带回
       if(currentTenant === '847975'){ // 东平带出特殊处理 直接从当前数据取
-        const {obj} = o.props
-        bringData.split(',').map((vv, index) => {
-          form.setFieldsValue({
-            [vv]: `${obj[axles || vv]}`,
-          });
-        });
       }else {
         const param = { 'sortl': dataType !== 'vehicleno' ? value : o.props.children, 'type': dataType };
         param['Blade-DesignatedTenant'] = getTenantId();

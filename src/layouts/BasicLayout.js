@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, notification  } from 'antd';
+import { Layout, notification } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
 import { ContainerQuery } from 'react-container-query';
@@ -14,10 +14,10 @@ import getPageTitle from '@/utils/getPageTitle';
 import { getCurrentUser } from '@/utils/authority';
 import { findNoList, readMassage } from '@/services/merDriver';
 import Func from '@/utils/Func';
-import { getTenantId } from "../pages/Merchants/commontable";
-import { clientId } from '../defaultSettings'
+import { getTenantId } from '../pages/Merchants/commontable';
+import { clientId } from '../defaultSettings';
 import { IEVersion } from '@/utils/utils';
-import 'antd/dist/antd.less'
+import 'antd/dist/antd.less';
 
 // lazy load SettingDrawer
 const SettingDrawer = React.lazy(() => import('@/components/SettingDrawer'));
@@ -49,15 +49,17 @@ const query = {
   },
 };
 class BasicLayout extends React.Component {
-
   constructor(props) {
     super(props);
     this.timer = null;
   }
 
   componentDidMount() {
-    const { dispatch, route: { routes, path, authority } } = this.props;
-    const {userId} = getCurrentUser();
+    const {
+      dispatch,
+      route: { routes, path, authority },
+    } = this.props;
+    const { userId } = ''; // getCurrentUser();
     dispatch({
       type: 'user/fetchCurrent',
     });
@@ -69,48 +71,65 @@ class BasicLayout extends React.Component {
       payload: { routes, path, authority },
     });
     const tentid = getTenantId();
-    if (clientId === 'kspt_driver' && (tentid ==='257720' || tentid ==='610791')){
-      const that = this
+    if (clientId === 'kspt_driver' && (tentid === '257720' || tentid === '610791')) {
+      const that = this;
       try {
-        if (Func.notEmpty(Version)&& Func.notEmpty(Version.getVersion())){
+        if (Func.notEmpty(Version) && Func.notEmpty(Version.getVersion())) {
           const versionName = '';
           const versionSplit = Version.getVersion(versionName);
           const verSplit = versionSplit.split('--');
         }
       } catch (e) {
         const param = {
-          pushUserId:userId,tenantId:getTenantId()
-        }
-        findNoList(param).then(resp=>{
-          if (resp.success){
-            resp.data.map(item=>{
-              notification.open({
+          pushUserId: userId,
+          tenantId: getTenantId(),
+        };
+        findNoList(param).then(resp => {
+          if (resp.success) {
+            resp.data.map(item => {
+              return notification.open({
                 message: item.title,
-                btn: <button className="ant-btn ant-btn-primary ant-btn-sm" onClick={()=>this.btnClick(item.id)}>标记已读</button>,
+                btn: (
+                  <button
+                    type="button"
+                    className="ant-btn ant-btn-primary ant-btn-sm"
+                    onClick={() => this.btnClick(item.id)}
+                  >
+                    标记已读
+                  </button>
+                ),
                 description: item.content,
                 onClose: close,
-                key:item.id,
-                duration:null
+                key: item.id,
+                duration: null,
               });
-            })
+            });
           }
-        })
-        that.interval = setInterval(()=>{
-          findNoList(param).then(resp=>{
-            if (resp.success){
-              resp.data.map(item=>{
-                notification.open({
+        });
+        that.interval = setInterval(() => {
+          findNoList(param).then(resp => {
+            if (resp.success) {
+              resp.data.map(item => {
+                return notification.open({
                   message: item.title,
-                  btn: <button className="ant-btn ant-btn-primary ant-btn-sm" onClick={()=>this.btnClick(item.id)}>标记已读</button>,
+                  btn: (
+                    <button
+                      type="button"
+                      className="ant-btn ant-btn-primary ant-btn-sm"
+                      onClick={() => this.btnClick(item.id)}
+                    >
+                      标记已读
+                    </button>
+                  ),
                   description: item.content,
                   onClose: close,
-                  key:item.id,
-                  duration:null
+                  key: item.id,
+                  duration: null,
                 });
-              })
+              });
             }
-          })
-        },60000 * 30)  // 30分钟请求一次
+          });
+        }, 60000 * 30); // 30分钟请求一次
       }
     }
   }
@@ -127,13 +146,13 @@ class BasicLayout extends React.Component {
     };
   }
 
-  btnClick = (id)=>{
-    readMassage({id}).then(resp=>{
-      if (resp.success){
-        notification.close(id)
+  btnClick = id => {
+    readMassage({ id }).then(resp => {
+      if (resp.success) {
+        notification.close(id);
       }
-    })
-  }
+    });
+  };
 
   getLayoutStyle = () => {
     const { fixSiderbar, isMobile, collapsed, layout } = this.props;
@@ -154,8 +173,6 @@ class BasicLayout extends React.Component {
   };
 
   renderSettingDrawer = () => {
-    // Do not render SettingDrawer in production
-    // unless it is deployed in preview.pro.ant.design as demo
     if (process.env.NODE_ENV === 'production' && process.env.APP_TYPE !== 'site') {
       return null;
     }
@@ -174,15 +191,13 @@ class BasicLayout extends React.Component {
       fixedHeader,
     } = this.props;
 
-
-
     // 获取显示页面的地址
     const indexIcon = children.props.location.pathname;
     const isTop = PropsLayout === 'topmenu';
-    const contentStyle = !fixedHeader ? { paddingTop: 0 } : {marginBottom: 84};
+    const contentStyle = !fixedHeader ? { paddingTop: 0 } : { marginBottom: 84 };
     const layout = (
       <Layout>
-        {(isTop && !isMobile) ? null : (
+        {isTop && !isMobile ? null : (
           <SiderMenu
             logo={logo}
             theme={navTheme}
@@ -198,26 +213,26 @@ class BasicLayout extends React.Component {
             minHeight: '100vh',
           }}
         >
-
-          <Content className='content' style={contentStyle}>
+          <Content className="content" style={contentStyle}>
             {children}
           </Content>
-          {
-            pathname.includes('dashboard') ||
-            pathname ==='/network/waybill' ||
-            pathname === '/shopcenter/mallhomepage/list'||pathname === '/driverSide/personal/personalShipper'||
-            pathname === '/driverSide/personal/personalCenter'?(
-              <Header
-                menuData={menuData}
-                handleMenuCollapse={this.handleMenuCollapse}
-                logo={logo}
-                indexIcon={indexIcon}
-                isMobile={isMobile}
-                id='Header'
-                {...this.props}
-              />
-            ):''
-          }
+          {pathname.includes('dashboard') ||
+          pathname === '/network/waybill' ||
+          pathname === '/shopcenter/mallhomepage/list' ||
+          pathname === '/driverSide/personal/personalShipper' ||
+          pathname === '/driverSide/personal/personalCenter' ? (
+            <Header
+              menuData={menuData}
+              handleMenuCollapse={this.handleMenuCollapse}
+              logo={logo}
+              indexIcon={indexIcon}
+              isMobile={isMobile}
+              id="Header"
+              {...this.props}
+            />
+          ) : (
+            ''
+          )}
         </Layout>
       </Layout>
     );
@@ -232,7 +247,6 @@ class BasicLayout extends React.Component {
             )}
           </ContainerQuery>
         </DocumentTitle>
-        {/* <Suspense fallback={null}>{this.renderSettingDrawer()}</Suspense> */}
       </React.Fragment>
     );
   }

@@ -29,7 +29,7 @@ const checkStatus = response => {
   if (
     (Number(response.status) >= 200 && Number(response.status) < 300) ||
     // 针对于要显示后端返回自定义详细信息的status, 配置跳过
-    (response.status == 400 || response.status == 500 ||  response.status == 401 )
+    (response.status === 400 || response.status === 500 ||  response.status === 401 )
   ) {
     return response;
   }
@@ -54,11 +54,11 @@ const checkServerCode = response => {
       message: response.msg || codeMessage[response.code],
     });
   }
-  if (response.code == 400) {
+  if (response.code === 400) {
     notification.error({
       message: response.msg || codeMessage[response.code],
     });
-  } else if (response.code == 401 ) {
+  } else if (response.code === 401 ) {
     if (window.location.hash.endsWith('/user/login')) { return false; }
     if(response.error_description === '用户名或密码错误'){
       notification.error({
@@ -67,11 +67,11 @@ const checkServerCode = response => {
     }
     removeAll();
     router.push('/user/login');
-  } else if (response.code == 404) {
+  } else if (response.code === 404) {
     notification.error({
       message: response.msg || codeMessage[response.code],
     });
-  } else if (response.code == 500 ) {
+  } else if (response.code === 500 ) {
     notification.error({
       message: response.msg || codeMessage[response.code],
     });
@@ -246,7 +246,7 @@ export default async function request(url, option) {
       }
 
       const status = e.name;
-      if (status == 401 ) {
+      if (status === 401 ) {
         // @HACK
         /* eslint-disable no-underscore-dangle */
         window.g_app._store.dispatch({
@@ -256,7 +256,7 @@ export default async function request(url, option) {
         return;
       }
       // environment should not be used
-      if (status == 403 ) {
+      if (status === 403 ) {
         router.push('/exception/403');
         return;
       }

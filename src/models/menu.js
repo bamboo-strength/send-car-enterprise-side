@@ -6,7 +6,6 @@ import { formatMessage } from 'umi/locale';
 import Authorized from '../utils/Authorized';
 import { menu } from '../defaultSettings';
 import {
-  dynamicTopMenus,
   dynamicRoutes,
   dynamicButtons,
   list,
@@ -19,16 +18,9 @@ import {
   apiScopeList,
 } from '../services/menu';
 import { dict } from '../services/dict';
-import {
-  getTopMenus,
-  setTopMenus,
-  getRoutes,
-  setRoutes,
-  getButtons,
-  setButtons,
-} from '../utils/authority';
+import { getRoutes, setRoutes, getButtons, setButtons } from '../utils/authority';
 import { MENU_NAMESPACE } from '../actions/menu';
-import { formatTopMenus, formatRoutes, formatButtons } from '../utils/utils';
+import { formatRoutes, formatButtons } from '../utils/utils';
 
 const { check } = Authorized;
 
@@ -53,7 +45,9 @@ function formatter(data, parentAuthority, parentName) {
       // close menu international
       const name = menu.disableLocal
         ? item.cnName
-        : formatMessage({ id: locale})==='locale'?formatMessage({ id: locale, defaultMessage: item.name }):item.cnName;
+        : formatMessage({ id: locale }) === 'locale'
+        ? formatMessage({ id: locale, defaultMessage: item.name })
+        : item.cnName;
       const result = {
         ...item,
         name,
@@ -162,27 +156,20 @@ export default {
   effects: {
     *fetchMenuData({ payload }, { call, put }) {
       const { authority, path } = payload;
-      // 设置顶部菜单
-     /* let topMenus = getTopMenus();
-      if (topMenus.length === 0) {
-        const response = yield call(dynamicTopMenus);
-        topMenus = formatTopMenus(response.data);
-        setTopMenus(topMenus);
-      } */
       // 设置菜单数据
       let routes = getRoutes();
       if (routes.length === 0) {
         const response = yield call(dynamicRoutes);
-        routes = formatRoutes(response.data);
+        routes = formatRoutes(response.data || []);
         setRoutes(routes);
       }
       // 设置按钮数据
-      let buttons = getButtons();
-      if (buttons.length === 0) {
-        const response = yield call(dynamicButtons);
-        buttons = formatButtons(response.data);
-        setButtons(buttons);
-      }
+      // let buttons = getButtons();
+      // if (buttons.length === 0) {
+      //   const response = yield call(dynamicButtons);
+      //   buttons = formatButtons(response.data);
+      //   setButtons(buttons);
+      // }
       const originalMenuData = memoizeOneFormatter(routes, authority, path);
       const menuData = filterMenuData(originalMenuData);
       const breadcrumbNameMap = memoizeOneGetBreadcrumbNameMap(originalMenuData);
@@ -193,7 +180,7 @@ export default {
     },
     *refreshMenuData({ payload, callback }, { call }) {
       const routes = yield call(dynamicRoutes, payload);
-      setRoutes(formatRoutes(routes.data));
+      setRoutes(formatRoutes(routes.data || []));
       if (callback) {
         callback();
       }

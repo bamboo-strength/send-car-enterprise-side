@@ -25,12 +25,15 @@ function AuthComponent({ children, location, routerData }) {
     return authorities;
   };
   return (
-    <Authorized
-      authority={getRouteAuthority(location.pathname, routerData)}
-      noMatch={isLogin ? <Exception403 /> : <Redirect to="/user/login" />}
-    >
+    <div>
       {children}
-    </Authorized>
+    </div>
+    // <Authorized
+    //   authority={getRouteAuthority(location.pathname, routerData)}
+    //   noMatch={isLogin ? <Exception403 /> : <Redirect to="/user/login" />}
+    // >
+    //   {children}
+    // </Authorized>
   );
 }
 export default connect(({ menu: menuModel }) => ({

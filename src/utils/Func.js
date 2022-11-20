@@ -6,7 +6,6 @@ import { getToken } from '@/utils/authority';
 import { joinQueue } from '../services/epidemic';
 import { getCurrentUser } from './authority';
 
-
 /**
  * 通用工具类
  */
@@ -91,7 +90,7 @@ export default class Func {
    */
   static formatFromStr(dateStr, fmt) {
     // console.log(dateStr,'---dateStr')
-    if ((this.isEmpty(dateStr))) {
+    if (this.isEmpty(dateStr)) {
       return dateStr;
     }
     //  const date = new Date(dateStr);
@@ -113,10 +112,43 @@ export default class Func {
     }
     //  const date = typeof dateStr === 'string' || dateStr === 'number' ?new Date(dateStr):dateStr;
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const strDate = date.getDate().toString().padStart(2, '0');
+    const strDate = date
+      .getDate()
+      .toString()
+      .padStart(2, '0');
     const format = fmt || 'YYYY-MM-DD HH:mm:ss';
-    const currentTime = `${date.getHours() > 0 ? (date.getHours() < 10 ? `${0}${date.getHours()}` : date.getHours()) : `${date.getHours()}${0}`}:${date.getMinutes() > 0 ? (date.getMinutes() < 10 ? `${0}${date.getMinutes()}` : date.getMinutes()) : `${date.getMinutes()}${0}`}:${date.getSeconds() > 0 ? (date.getSeconds() < 10 ? `${0}${date.getSeconds()}` : date.getSeconds()) : `${date.getSeconds()}${0}`}`;
-    const currentDay = `${date.getHours() > 0 ? (date.getHours() < 10 ? `${0}${date.getHours()}` : date.getHours()) : `${date.getHours()}${0}`}:${date.getMinutes() > 0 ? (date.getMinutes() < 10 ? `${0}${date.getMinutes()}` : date.getMinutes()) : `${date.getMinutes()}${0}`}`;
+    const currentTime = `${
+      date.getHours() > 0
+        ? date.getHours() < 10
+          ? `${0}${date.getHours()}`
+          : date.getHours()
+        : `${date.getHours()}${0}`
+    }:${
+      date.getMinutes() > 0
+        ? date.getMinutes() < 10
+          ? `${0}${date.getMinutes()}`
+          : date.getMinutes()
+        : `${date.getMinutes()}${0}`
+    }:${
+      date.getSeconds() > 0
+        ? date.getSeconds() < 10
+          ? `${0}${date.getSeconds()}`
+          : date.getSeconds()
+        : `${date.getSeconds()}${0}`
+    }`;
+    const currentDay = `${
+      date.getHours() > 0
+        ? date.getHours() < 10
+          ? `${0}${date.getHours()}`
+          : date.getHours()
+        : `${date.getHours()}${0}`
+    }:${
+      date.getMinutes() > 0
+        ? date.getMinutes() < 10
+          ? `${0}${date.getMinutes()}`
+          : date.getMinutes()
+        : `${date.getMinutes()}${0}`
+    }`;
     if (format === 'YYYY-MM-DD HH:mm:ss') {
       return `${date.getFullYear()}-${month}-${strDate} ${currentTime}`;
     }
@@ -132,18 +164,18 @@ export default class Func {
     return dateStr;
   }
 
-  static handleStrDate(dateStr, fmt) {
-    if(dateStr && !dateStr.includes('-')){
-      const year = dateStr.substring(0,4)
-      const month = dateStr.substring(4,6)
-      const day = dateStr.substring(6,8)
-      const hour = dateStr.substring(8,10)
-      const minute = dateStr.substring(10,12)
-      const second = dateStr.substring(12,14)
-      const returnData = `${year}-${month}-${day} ${hour}:${minute}:${second}`
-      return returnData
+  static handleStrDate(dateStr) {
+    if (dateStr && !dateStr.includes('-')) {
+      const year = dateStr.substring(0, 4);
+      const month = dateStr.substring(4, 6);
+      const day = dateStr.substring(6, 8);
+      const hour = dateStr.substring(8, 10);
+      const minute = dateStr.substring(10, 12);
+      const second = dateStr.substring(12, 14);
+      const returnData = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+      return returnData;
     }
-  return dateStr
+    return dateStr;
   }
 
   /**
@@ -204,7 +236,27 @@ export default class Func {
    * @returns {boolean}
    */
   static isQuery(key) {
-    const query = ['Blade-DesignatedTenant', 'current', 'size', '_ignore', '_equal', '_notequal', '_notlike', '_ge', '_le', '_gt', '_lt', '_datege', '_dategt', '_dateequal', '_datele', '_datelt', '_null', '_notnull', '_like'];
+    const query = [
+      'Blade-DesignatedTenant',
+      'current',
+      'size',
+      '_ignore',
+      '_equal',
+      '_notequal',
+      '_notlike',
+      '_ge',
+      '_le',
+      '_gt',
+      '_lt',
+      '_datege',
+      '_dategt',
+      '_dateequal',
+      '_datele',
+      '_datelt',
+      '_null',
+      '_notnull',
+      '_like',
+    ];
     // eslint-disable-next-line no-restricted-syntax
     for (const query_key in query) {
       if (key.indexOf(query[query_key]) !== -1) {
@@ -222,10 +274,7 @@ export default class Func {
    */
   static addQuery(params, key, key_words) {
     const value = params[key];
-    // eslint-disable-next-line no-param-reassign
     delete params[key];
-    // eslint-disable-next-line no-param-reassign
-    // eslint-disable-next-line no-param-reassign
     params[`${key}${key_words}`] = value;
 
     return params;
@@ -250,7 +299,6 @@ export default class Func {
     let flag = false;
     const arr = Object.keys(data);
     for (const index in arr) {
-      // console.log(arr[index],data[arr[index]])
       if (this.notEmpty(data[arr[index]]) && !arr[index].includes('Time')) {
         flag = true;
         break;
@@ -275,7 +323,7 @@ export default class Func {
     if (arr.length < 1) {
       return sum;
     }
-    arr.forEach((item) => {
+    arr.forEach(item => {
       const data = Number(item[param]).toFixed(2);
       // console.log(item[param],Number(item[param]),data,typeof data,typeof Number(data))
       sum += Number(data);
@@ -284,95 +332,97 @@ export default class Func {
   }
 
   static NumberToString(n) {
-
     if (!/^(0|[1-9]\d*)(\.\d+)?$/.test(n)) {
-      return '数据非法';  // 判断数据是否大于0
+      return '数据非法'; // 判断数据是否大于0
     }
 
     let unit = '千百拾亿千百拾万千百拾元角分';
     let str = '';
     n += '00';
 
-    const indexpoint = n.indexOf('.');  // 如果是小数，截取小数点前面的位数
+    const indexpoint = n.indexOf('.'); // 如果是小数，截取小数点前面的位数
 
     if (indexpoint >= 0) {
-
-      n = n.substring(0, indexpoint) + n.substr(indexpoint + 1, 2);   // 若为小数，截取需要使用的unit单位
+      n = n.substring(0, indexpoint) + n.substr(indexpoint + 1, 2); // 若为小数，截取需要使用的unit单位
     }
 
-    unit = unit.substr(unit.length - n.length);  // 若为整数，截取需要使用的unit单位
+    unit = unit.substr(unit.length - n.length); // 若为整数，截取需要使用的unit单位
     for (let i = 0; i < n.length; i++) {
-      str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i);  // 遍历转化为大写的数字
+      str += '零壹贰叁肆伍陆柒捌玖'.charAt(n.charAt(i)) + unit.charAt(i); // 遍历转化为大写的数字
     }
 
-    return str.replace(/零(千|百|拾|角)/g, '零').replace(/(零)+/g, '零').replace(/零(万|亿|元)/g, '$1').replace(/(亿)万|壹(拾)/g, '$1$2').replace(/^元零?|零分/g, '').replace(/元$/g, '元整'); // 替换掉数字里面的零字符，得到结果
-
+    return str
+      .replace(/零(千|百|拾|角)/g, '零')
+      .replace(/(零)+/g, '零')
+      .replace(/零(万|亿|元)/g, '$1')
+      .replace(/(亿)万|壹(拾)/g, '$1$2')
+      .replace(/^元零?|零分/g, '')
+      .replace(/元$/g, '元整'); // 替换掉数字里面的零字符，得到结果
   }
 
   /* 倒计时 */
   static countdown2(time) {
     // 处理苹果系统时间显示NaN问题
-    if (typeof time === 'string'|| typeof time === 'number'){
-      time = time.replace(/-/g, '/')
+    if (typeof time === 'string' || typeof time === 'number') {
+      time = time.replace(/-/g, '/');
     }
     const nowTime = new Date(); // 当前时间
-    const endDate = new Date(time);  // 截止时间
+    const endDate = new Date(time); // 截止时间
     let num = endDate.getTime() - nowTime.getTime();
     const day = Number.parseInt(num / (24 * 60 * 60 * 1000), 10);
-    num %= (24 * 60 * 60 * 1000);
+    num %= 24 * 60 * 60 * 1000;
     const hour = Number.parseInt(num / (60 * 60 * 1000), 10);
-    num %= (60 * 60 * 1000);
+    num %= 60 * 60 * 1000;
     const minute = Number.parseInt(num / (60 * 1000), 10);
-    num %= (60 * 1000);
+    num %= 60 * 1000;
     const seconde = Number.parseInt(num / 1000, 10);
     return `${day} 天 ${hour} 时 ${minute} 分 ${seconde} 秒`;
   }
 
   // 获取服务器时间
-  static getSeverTime(){
+  static getSeverTime() {
     let xmlHttp = new XMLHttpRequest();
-    let severtime = ''
-    if( !xmlHttp ){
-      xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    let severtime = '';
+    if (!xmlHttp) {
+      xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
     }
-    xmlHttp.open("HEAD",location.href,false);
+    xmlHttp.open('HEAD', location.href, false);
     xmlHttp.send();
-    severtime=new Date(xmlHttp.getResponseHeader("Date"));
-    return severtime
+    severtime = new Date(xmlHttp.getResponseHeader('Date'));
+    return severtime;
   }
 
   // 倒计时
-  static countdown(time,text){
-    const timer = ''
+  static countdown(time, text) {
+    const timer = '';
     // 处理苹果系统时间显示NaN问题
-    if (typeof time === 'string'|| typeof time === 'number'){
-      time = time.replace(/-/g, '/')
+    if (typeof time === 'string' || typeof time === 'number') {
+      time = time.replace(/-/g, '/');
     }
     let msg = '';
     // const bb = this.getSeverTime().getTime()
     const bb = new Date().getTime();
     const dd = new Date(time).getTime();
-    const times = dd-bb
+    const times = dd - bb;
     /* 判断截止时间减去当前时间 是否 小于0，小于0就停止定时器调用 */
     if (times <= 0) {
-      msg = text || '0 天 0 时 0 分 0 秒'
+      msg = text || '0 天 0 时 0 分 0 秒';
       clearInterval(timer);
     } else {
       const nowTime = new Date(); // 当前时间
-      const endDate = new Date(time);  // 截止时间
+      const endDate = new Date(time); // 截止时间
       let num = endDate.getTime() - nowTime.getTime();
       const day = Number.parseInt(num / (24 * 60 * 60 * 1000), 10);
-      num %= (24 * 60 * 60 * 1000);
+      num %= 24 * 60 * 60 * 1000;
       const hour = Number.parseInt(num / (60 * 60 * 1000), 10);
-      num %= (60 * 60 * 1000);
+      num %= 60 * 60 * 1000;
       const minute = Number.parseInt(num / (60 * 1000), 10);
-      num %= (60 * 1000);
+      num %= 60 * 1000;
       const seconde = Number.parseInt(num / 1000, 10);
       msg = `${day} 天 ${hour} 时 ${minute} 分 ${seconde} 秒`;
     }
     return msg;
   }
-
 
   static toPay(queueId, position) {
     if (window.__wxjs_environment === 'miniprogram') {
@@ -381,34 +431,38 @@ export default class Func {
       if (getCurrentUser().openId) {
         joinQueue({ id: queueId, formalQueuePosition: position }).then(rr => {
           if (rr.success) {
-            requestApi('/api/mer-queue/wx/pay/unifiedorder', { orderId: rr.msg, payForm: '2' }).then(response => { // 调起微信支付
+            requestApi('/api/mer-queue/wx/pay/unifiedorder', {
+              orderId: rr.msg,
+              payForm: '2',
+            }).then(response => {
+              // 调起微信支付
               console.log(response, '===response');
               // Toast.info(`调起支付${response.success}`)
               const { data } = response;
               // Toast.info(stringify(data))
               if (response.success) {
-                Toast.info('1111 success')
+                Toast.info('1111 success');
                 WeixinJSBridge.invoke(
                   'getBrandWCPayRequest',
                   {
-                    'appId': data.appId,
-                    'nonceStr': data.nonceStr,
-                    'package': data.packageValue,
-                    'paySign': data.paySign,
-                    'signType': 'MD5',
-                    'timeStamp': data.timeStamp,
+                    appId: data.appId,
+                    nonceStr: data.nonceStr,
+                    package: data.packageValue,
+                    paySign: data.paySign,
+                    signType: 'MD5',
+                    timeStamp: data.timeStamp,
                   },
                   function(res) {
-                    Toast.info(res.err_msg)
+                    Toast.info(res.err_msg);
                     if (res.err_msg === 'get_brand_wcpay_request:ok') {
                       Toast.info('排队成功');
                       router.push('/dashboard/function');
-                    }else {
+                    } else {
                       Toast.info('付费失败');
                     }
-                  },
+                  }
                 );
-              }else {
+              } else {
                 Toast.info('微信授权有误，请联系管理员');
               }
             });
@@ -416,8 +470,8 @@ export default class Func {
             Toast.info('提交排队失败，请联系管理员');
           }
         });
-
-      } else { // 未绑定 跳转去绑定
+      } else {
+        // 未绑定 跳转去绑定
         // Toast.info('to Weixin')
         const item = {
           queueId,
@@ -430,9 +484,9 @@ export default class Func {
       }
       // })
     } else {
-      Toast.info(('不是微信支付环境'));
+      Toast.info('不是微信支付环境');
     }
-  };
+  }
 
   /* 身份证号中间内容用 * 号展示 */
   static bankNo(num) {
@@ -442,15 +496,15 @@ export default class Func {
   static IdentityCodeValid(value) {
     const p = /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
     const q = /^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$/;
-    if (value && value.length===18 && p.test(value)) {
-      const factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];
-      const parity = [ '1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2' ];
+    if (value && value.length === 18 && p.test(value)) {
+      const factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+      const parity = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
       const code = value.substring(17);
       let sum = 0;
-      for(let i=0; i < 17; i+=1) {
+      for (let i = 0; i < 17; i += 1) {
         sum += value[i] * factor[i];
       }
-      if(parity[sum % 11] === code.toUpperCase()) {
+      if (parity[sum % 11] === code.toUpperCase()) {
         return true;
       }
     }
@@ -459,49 +513,43 @@ export default class Func {
 
   // 判断对象是否为空
   static ifObjectNotNull(object) {
-    if(object && JSON.stringify(object) !== '{}'){
-      return true
+    if (object && JSON.stringify(object) !== '{}') {
+      return true;
     }
-    return false
+    return false;
   }
 
   /* 当天时间的24小时之后 */
-  static postpone =()=>{
-    return new Date((new Date()/1000+86400)*1000)
-  }
+  static postpone = () => {
+    return new Date((new Date() / 1000 + 86400) * 1000);
+  };
 
   /* 当天时间的23点59分59秒 */
-  static DayendTime =()=>{
-    return new Date().setHours(23,59,59)
-  }
+  static DayendTime = () => {
+    return new Date().setHours(23, 59, 59);
+  };
 
   /* 当天时间的23点59分59秒 */
-  static DayendTime1 =()=>{
-    return new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1)
-  }
-
-
+  static DayendTime1 = () => {
+    return new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
+  };
 
   // 当前月初时间
-  static monthFirst =()=>{
+  static monthFirst = () => {
     const now = new Date(); // 当前时间
-    const nowMonth = now.getMonth()
-    const nowYear = now.getFullYear()
-    return new Date(nowYear, nowMonth, 1)
-  }
+    const nowMonth = now.getMonth();
+    const nowYear = now.getFullYear();
+    return new Date(nowYear, nowMonth, 1);
+  };
 
   /* 计算当前时间之前一个月的日期的0点0分0秒 */
   static MonthstartTime = () => {
-    return new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000)
-  }
+    return new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000);
+  };
 
   // 判断字符串是否为年月日格式
   static isDate(val) {
     if (typeof val !== 'string') return false;
-    return !!(val.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/));
+    return !!val.match(/^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/);
   }
-
 }
-
-
-

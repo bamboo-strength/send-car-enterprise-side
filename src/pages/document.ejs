@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="format-detection" content="telephone=yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta name="format-detection" content="telephone=yes"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="format-detection" content="telephone=yes" />
 
-  <title>大车奔腾物流平台</title>
-<!--      <title>智慧矿山管控平台</title>-->
-<!--    <title>物迹福达网络货运平台</title>-->
-
+    <title>大车奔腾物流平台</title>
     <style type="text/css">
       #contentInfo {
         text-align: center;
@@ -22,16 +22,16 @@
       }
       @-webkit-keyframes rotation {
         0% {
-        transform: rotate(0deg);
+          transform: rotate(0deg);
         }
         100% {
-        transform: rotate(360deg);
+          transform: rotate(360deg);
         }
       }
       #loader-8 {
         width: 48px;
         height: 48px;
-        border: 3px solid #1890FF;
+        border: 3px solid #1890ff;
         border-bottom-color: transparent;
         border-radius: 50%;
         display: inline-block;
@@ -40,12 +40,12 @@
         animation: rotation 1s linear infinite;
       }
       #loader-8:after {
-        content: "";
+        content: '';
         position: absolute;
         left: 20px;
         top: 31px;
         border: 10px solid transparent;
-        border-right-color: #1890FF;
+        border-right-color: #1890ff;
         transform: rotate(-40deg);
       }
       #afterInfo {
@@ -55,7 +55,7 @@
       #btnReload {
         width: 110px;
         height: 38px;
-        background-color: #1890FF;
+        background-color: #1890ff;
         line-height: 38px;
         text-align: center;
         color: #fff;
@@ -66,21 +66,20 @@
     </style>
     <script type="text/javascript">
       setTimeout(() => {
-        var afterInfo=window.document.getElementById("afterInfo")
-        afterInfo.style.display = 'block'
+        var afterInfo = window.document.getElementById('afterInfo');
+        afterInfo.style.display = 'block';
         let btnReload = window.document.getElementById('btnReload');
-        btnReload.onclick = function () {
+        btnReload.onclick = function() {
           location.reload();
         };
-      }, 15000)
+      }, 15000);
     </script>
-</head>
-<body>
-<noscript>Sorry, we need js to run correctly!</noscript>
+  </head>
+  <body>
+    <noscript>Sorry, we need js to run correctly!</noscript>
     <div id="root">
       <div id="contentInfo">
-        <div id="loader-8">
-        </div>
+        <div id="loader-8"></div>
         <div id="textInfo">资源加载中，请稍后...</div>
         <div id="afterInfo" style="display: none;">
           <div>
@@ -103,15 +102,5 @@
         </div>
       </div>
     </div>
-</body>
+  </body>
 </html>
-<script type="text/javascript">
-    window._AMapSecurityConfig = {
-        securityJsCode:'49774cf42a4f34e4bbf3b80e00af0429',  //高德地图密钥
-    }
-</script>
-<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
-   <!--引入高德地图JSAPI -->
-<script src="//webapi.amap.com/maps?v=2.0&key=c9d92e6994ccdc2d49bae626ac442165&plugin=AMap.DistrictSearch,AMap.ControlBar,AMap.Geocoder"></script>
-   <!--引入UI组件库（1.1版本） -->
-<script src="//webapi.amap.com/ui/1.1/main.js"></script>

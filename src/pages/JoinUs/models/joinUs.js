@@ -13,7 +13,6 @@ export default {
 
   effects: {
     *submit({ payload }, { call, put }) {
-      // console.log(payload)
       const response = yield call(joinus, payload);
       if (response.success) {
         message.success(response.msg);
@@ -21,7 +20,6 @@ export default {
           type: 'joinusHandle',
           payload: response,
         });
-        // router.push('/user/joinus-result');
         router.push({
           pathname: '/user/joinus-result',
           state: {

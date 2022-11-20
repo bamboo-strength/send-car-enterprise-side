@@ -9,7 +9,6 @@ import MatrixInput from '@/components/Matrix/MatrixInput';
 import { detail, remove } from '@/services/carleader';
 import MyModal from '@/components/Util/MyModal';
 import CarLeaderAgreement from '@/pages/DriverSide/Personal/CarLeaderAgreement';
-import Agreement from '@/pages/JoinUs/Agreement';
 import { getAuditStatus } from '../../../services/carleader';
 const {AgreeItem} = Checkbox;
 const { Option } = Select;

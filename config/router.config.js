@@ -6,29 +6,8 @@ export default [
     routes: [
       { path: '/user', redirect: '/user/login' },
       { path: '/user/login', name: 'login', component: './Login/Login' },
-      { path: '/user/login/:tenantId', name: 'login', component: './Login/Login' },
-      { path: '/user/tokenlogin', name: 'tokenlogin', component: './TokenLogin/Login' },
-      { path: '/user/ssologin', name: 'ssologin', component: './SSOLogin/Login' },
-      { path: '/user/register', name: 'register', component: './Login/Register' },
-      {
-        path: '/user/register-result',
-        name: 'register.result',
-        component: './Login/RegisterResult',
-      },
-      // { path: '/user/joinus', redirect: '/user/joinus'  },
-      { path: '/user/joinus/:tenantId', name: 'joinus', component: './JoinUs/JoinUs' },
-      { path: '/user/joinus/', name: 'joinus', component: './JoinUs/JoinUs' },
-      { path: '/user/joinus-result', name: 'joinus.result', component: './JoinUs/JoinUsResult' },
-      { path: '/user/joinus-agreement', name: 'joinus.agreement', component: './JoinUs/Agreement' },
+      { path: '/user/register', name: 'joinus', component: './JoinUs/JoinUs' },
       { path: '/user/forgetPwd', component: './Login/ForgetPwd' },
-      { path: '/user/forgetPwd/847975', component: './Login/847975/ForgetPwd847975' },
-    ],
-  },
-  {
-    path: '/skipLogin',
-    routes: [
-      { path: '/skipLogin/tokenlogin', name: 'tokenlogin', component: './TokenLogin/Login' },
-      { path: '/skipLogin/tokenloginCookie', name: 'tokenlogin', component: './TokenLogin/LoginCookie' },
     ],
   },
   {
@@ -189,7 +168,6 @@ export default [
         ],
       },
 
-      // {path: '/shashi/exportData/exportWeighing',component: './Shashi/ExportData/ExportWeighing'}, // 导出客户检斤流水 暂时未使用
       {path: '/shashi/transPort/transPort',component: './Shashi/TransPort/TransPort'}, // 乳山资质审核
       {path: '/shashi/Yamei/inspectVehicleForYamei/:type',component: './Shashi/TransPort/InspectVehicleForYamei'}, // 亚美车检功能
       {path: '/shashi/checktheweight/export',component: './Shashi/checkTheWeight/CheckTheWeight'}, // 销售检斤导出功能
@@ -801,7 +779,6 @@ export default [
       {
         path: '/',
         redirect: '/dashboard/menu',
-        // redirect: '/dashboard/freight',//网络货运页面
         authority: ['administrator', 'admin', 'user', 'test'],
       },
       {
@@ -974,10 +951,7 @@ export default [
           { path: '/dashboard/shangchuanchenggong', component: './PageMould/Shangchuanchenggeng' },
           { path: '/dashboard/yphotography', component: './PageMould/Yphotography' },
           { path: '/dashboard/chakantupian', component: './PageMould/Chakantupian' },
-          { path: '/dashboard/shebeizijian', component: './PageMould/Shebeizijian' },
-          { path: '/dashboard/guijihuifang/:id', component: './PageMould/Guijihuifang' },
-          { path: '/dashboard/cheliangjiankong/:id', component: './PageMould/Cheliangjiankong' },
-          { path: '/dashboard/guijihuifang2/:id', component: './PageMould/Guijihuifang2'},
+          { path: '/dashboard/shebeizijian', component: './PageMould/Shebeizijian' }
         ],
       },
       {
@@ -1276,8 +1250,6 @@ export default [
               { path: '/shopcenter/mallhomepage/view/:id', component: './ShopCenter/MallHomepage/MallHomepageDetail' },
               { path: '/shopcenter/mallhomepage/search', component: './ShopCenter/MallHomepage/MallHomepageSearch' },
               { path: '/shopcenter/mallhomepage/geoMap', component: './ShopCenter/MallHomepage/geoMap' },
-              // {path: '/shopcenter/mallhomepage/goodsdetails/:id',component: './ShopCenter/MallHomepage/GoodsDetails'},
-              // {path: '/shopcenter/mallhomepage/makesuretheorder/:status',component: './ShopCenter/MallHomepage/MakeSureTheOrder'},
             ],
           },
           {
@@ -1290,7 +1262,6 @@ export default [
           {
             path: '/shopcenter/makesuretheorder',
             routes: [
-              // { path: '/shopcenter/makesuretheorder', redirect: '/shopcenter/makesuretheorder' },
               { path: '/shopcenter/makesuretheorder', component: './ShopCenter/MakeSureTheOrder' },
             ],
           },

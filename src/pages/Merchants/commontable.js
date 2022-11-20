@@ -19,10 +19,10 @@ export function getColums (showColums,modulelistName){
 }
 
 export function getTenantId (){ // 获取租户号
-  let  shipperTenantId = getCurrentUser().tenantId
-  if(clientId ==='kspt_shf' || clientId==='kspt_cyf' || clientId==='kspt_driver'){
-    shipperTenantId = localStorage.getItem('merchantsFhfTenantId') || JSON.parse(localStorage.getItem('sword-current-user')).tenantId
-  }
+  let shipperTenantId = null // getCurrentUser().tenantId
+  // if(clientId ==='kspt_shf' || clientId==='kspt_cyf' || clientId==='kspt_driver'){
+  //   shipperTenantId = localStorage.getItem('merchantsFhfTenantId') || JSON.parse(localStorage.getItem('sword-current-user')).tenantId
+  // }
   return  shipperTenantId
 }
 

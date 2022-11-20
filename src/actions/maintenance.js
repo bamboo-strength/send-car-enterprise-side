@@ -16,14 +16,6 @@ export function MAINTENACE_STATE_COMPANY(payload) {
   };
 }
 
-// /* 企业认证链接 */
-// export function MAINTENACE_LINK_COMPANYH5(payload) {
-//   return {
-//     type: `${MAINTENANCE}/fetchCompanyH5page`,
-//     payload,
-//   };
-// }
-
 /* 个人认证状态 */
 export function MAINTENACE_STATE_PERSONAL(payload) {
   return {
@@ -31,14 +23,6 @@ export function MAINTENACE_STATE_PERSONAL(payload) {
     payload,
   };
 }
-
-// /* 个人认证链接 */
-// export function MAINTENACE_LINK_PERSONALURL(payload) {
-//   return {
-//     type: `${MAINTENANCE}/fetchPersonalUrl`,
-//     payload,
-//   };
-// }
 
 /* 个人认证 */
 export function MAINTENACE_SUBMIT_PERSONAL(payload) {

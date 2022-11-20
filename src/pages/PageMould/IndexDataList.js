@@ -45,24 +45,24 @@ class IndexDataList extends PureComponent{
 
 
   componentDidMount() {
-    const record  = JSON.parse(localStorage.getItem('indexDataRecord'))
-    if(record){
-      this.getSettingData(record)
-    }else {
-      const params = {current : 1,size : 5};
-      params['Blade-DesignatedTenant'] = getTenantId();
-      params.showType = 2
-      getMobileQuery(func.parseQuery(params)).then(resp => {
-        if (resp.success &&  resp.data.length>0) {
-          localStorage.setItem('indexDataRecord', JSON.stringify(resp.data[0]));
-          this.getSettingData(resp.data[0])
-        }else {
-          this.setState({
-            getBusinessList:[]
-          })
-        }
-      });
-    }
+    // const record  = JSON.parse(localStorage.getItem('indexDataRecord'))
+    // if(record){
+    //   this.getSettingData(record)
+    // }else {
+    //   const params = {current : 1,size : 5};
+    //   params['Blade-DesignatedTenant'] = getTenantId();
+    //   params.showType = 2
+    //   getMobileQuery(func.parseQuery(params)).then(resp => {
+    //     if (resp.success &&  resp.data.length>0) {
+    //       localStorage.setItem('indexDataRecord', JSON.stringify(resp.data[0]));
+    //       this.getSettingData(resp.data[0])
+    //     }else {
+    //       this.setState({
+    //         getBusinessList:[]
+    //       })
+    //     }
+    //   });
+    // }
   }
 
   componentWillUnmount() {
@@ -94,7 +94,7 @@ class IndexDataList extends PureComponent{
         }else { // 通用功能数据
           this.getCommonData(record,tableName,moduleName,data.columList)
           const tenantId = getTenantId()
-          if(tenantId==='947229' || tenantId==='847975' && clientId==='kspt_driver'){ // 瀛洲矿业 东平砂石司机端定时刷新
+          if(tenantId==='947229' && clientId==='kspt_driver'){ // 瀛洲矿业 东平砂石司机端定时刷新
             const that = this
             that.interval = setInterval(()=>{
               this.getCommonData(record,tableName,moduleName,item)
@@ -287,19 +287,6 @@ class IndexDataList extends PureComponent{
               />
           }
         </List>
-      )
-    }
-
-    else if(tenantId==='847975' && clientId==='kspt_driver' ){
-      indexDefault = (
-        ifBusinessListArray ?
-          emptyData :
-          <DispatchForShashi
-            businessSetting={businessSetting}
-            getBusinessList={getBusinessList}
-            showColums={showColums}
-            showQcode={this.showQcode}
-          />
       )
     }
     else { // 默认

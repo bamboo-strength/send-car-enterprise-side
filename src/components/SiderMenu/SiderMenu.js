@@ -5,7 +5,7 @@ import Link from 'umi/link';
 import styles from './index.less';
 import PageLoading from '../PageLoading';
 import { getDefaultCollapsedSubMenus } from './SiderMenuUtils';
-import { name, loginTitle } from '../../defaultSettings';
+import { loginTitle } from '../../defaultSettings';
 import { getCurrentUser } from '../../utils/authority';
 
 const BaseMenu = React.lazy(() => import('./BaseMenu'));

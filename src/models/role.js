@@ -102,7 +102,7 @@ export default {
       if (response.success) {
         const routes = yield call(dynamicRoutes);
         const buttons = yield call(dynamicButtons);
-        setRoutes(formatRoutes(routes.data));
+        setRoutes(formatRoutes(routes.data || []));
         setButtons(formatButtons(buttons.data));
         if (callback) {
           callback();

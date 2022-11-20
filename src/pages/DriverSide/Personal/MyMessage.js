@@ -142,12 +142,7 @@ class MyMessage extends React.Component {
   }
 
   goReturn = ()=>{
-    const tenant_id = getCurrentUser().tenantId
-    if(tenant_id==='847975'){
-      router.push('/dashboard/menu')
-    }else {
-      window.history.back();
-    }
+    window.history.back();
   }
 
 

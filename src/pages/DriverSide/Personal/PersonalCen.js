@@ -293,14 +293,6 @@ class PersonalCen extends React.Component {
                 thumbStyle={{ width: '20%' }}
               />
             </Card>
-            {
-              currentTenant === '847975' && (
-                <div className={style.kswallet} onClick={()=>router.push('/kswallet/wallhomepage')}>
-                  <div className="imgRound"><img src={U87} alt='' /></div>
-                  我的钱包
-                </div>
-              )
-            }
             <WhiteSpace />
             {project==='wlhy'?
               <List className='static-list'>
@@ -344,19 +336,6 @@ class PersonalCen extends React.Component {
                   <Icon type="message" theme="twoTone" className='icon_name' /> 我的消息
                 </Item>
                 <Item arrow="horizontal" onClick={() => router.push('/driverSide/personal/feedback')} platform="android"><Icon type="save" theme="twoTone" className='icon_name' /> 意见反馈</Item>
-                {
-                  window.__wxjs_environment === 'miniprogram'&&currentTenant!=='847975'?
-                    <div>
-                      <Item arrow="horizontal" platform="android" onClick={()=>this.setState({showfocusGzh:true})}>
-                        <Icon type="qrcode" className='icon_name' style={{color:'rgb(24, 144, 255)'}} /> 关注公众号
-                      </Item>
-                      <Item arrow="horizontal" platform="android" onClick={this.binbWxInfo}>
-                        <Icon type="qrcode" className='icon_name' style={{color:'rgb(24, 144, 255)'}} /> 信息绑定
-                      </Item>
-                    </div>
-
-                    :undefined
-                }
                 <Item arrow="horizontal" platform="android" onClick={()=>this.setState({showDownload:true})}>
                   <Icon type="appstore" theme="twoTone" className='icon_name' /> APP二维码分享
                 </Item>

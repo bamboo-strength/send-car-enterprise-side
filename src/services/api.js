@@ -176,18 +176,7 @@ export async function clearNotices(type) {
   return request(`/api/base-alarm/alarmprocess/clearAllProcess`);
 }
 
-/* export async function joinus(params) {
-  return request('/api/shipper-user/client/register-user', {
-    method: 'POST',
-    body: params,
-  });
-} */
-
 export async function joinus(params) {
- /* return request('/api/shipper-user/client/merDriver/register-user', {
-    method: 'POST',
-    body: params,
-  }); */
   return request('/api/mer-user/client/merDriver/register-user', {
     method: 'POST',
     body: params,

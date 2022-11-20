@@ -201,54 +201,6 @@ const createInfo= (addr,lng,lat,extData)=>{
   // content.push(`<div>设备状态：${statusName}</div>`)
   content.push(`<div>GPS时间：${gpstime}</div>`)
   content.push(`<div>时速：${speed} km/h</div>`)
-  //content.push(`<div>GPS坐标：${lng},${lat}</div>`)
-  //content.push(`<div>GPS时间：${gpstime}</div>`)
-  // content.push(`<div>更新时间：${inputtime}</div>`),载重：${weight} T
-  //content.push(`<div>方向：${directionName}</div>`)
-  //content.push(`<div>备注：${remark}</div>`)
-  // switch (deviceType) {
-  //   case 3: // 汉德数据展示模块
-  //     statusName = returnDeviceZt(status);
-  //     content.push(`<div>号牌号码：${truckNo}</div>`)
-  //     content.push(`<div>设备编号：${deviceno}</div>`)
-  //     content.push(`<div>所属部门：${createDeptName}</div>`)
-  //     content.push(`<div>GPS地址：${addr}</div>`)
-  //     content.push(`<div>GPS坐标：${lng},${lat}</div>`)
-  //     content.push(`<div>GPS时间：${gpstime}</div>`)
-  //     content.push(`<div>更新时间：${inputtime}</div>`)
-  //     content.push(`<div>方向：${directionName}</div>`)
-  //     content.push(`<div>设备状态：${statusName}</div>`)
-  //     content.push(`<div>时速：${speed} km/h,载重：${weight} T</div>`)
-  //     content.push(`<div>备注：${remark}</div>`)
-  //     // content.push("<Link>轨迹查看</Link>");
-  //     break;
-  //   default:
-  //     content.push('');
-  // }
-  // content.push(`<div>GPS编号：${deviceno}</div>`)
-  // content.push(`<div>GPS状态：${statusName}/ACC${ accStatus===1?'开':'关' },时速：${speed} km/h</div>`)
-  // switch (zt) {
-  //   case 2:
-  //     content.push(`<div>停车时长：${stay}</div>`)
-  //     break;
-  //   case 3:
-  //     content.push(`<div>离线时长：${stay}</div>`)
-  //     break;
-  //   case 4:
-  //     content.push(`<div>失效时长：${stay}</div>`)
-  //     break;
-  //   default:
-  //     content.push('')
-  // }
-  // content.push(`<div>GPS地址：${addr}</div>`)
-  // content.push(`<div>GPS坐标：${lng},${lat}</div>`)
-  // content.push(`<div>海拔高度：${altitude} km</div>`)
-  // content.push(`<div>方向：${directionName}</div>`)
-  // content.push(`<div>GPS时间：${gpstime}</div>`)
-  // content.push(`<div>更新时间：${inputtime}</div>`)
-  // content.push(`<div>GPS信号：${ locateStatus===1?'定位':'未定位' }</div>`)
-  // content.push("<a>轨迹回放</a>");
-
   return content;
 }
 
