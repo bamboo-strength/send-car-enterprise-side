@@ -5,22 +5,13 @@ import { connect } from 'dva';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import Media from 'react-media';
-import { Toast } from 'antd-mobile';
 import logo from '../assets/logo.svg';
 import Header from './Header';
 import Context from './MenuContext';
-import SiderMenu from '@/components/SiderMenu';
 import getPageTitle from '@/utils/getPageTitle';
 import { getCurrentUser } from '@/utils/authority';
 import { findNoList, readMassage } from '@/services/merDriver';
-import Func from '@/utils/Func';
-import { getTenantId } from '../pages/Merchants/commontable';
-import { clientId } from '../defaultSettings';
-import { IEVersion } from '@/utils/utils';
 import 'antd/dist/antd.less';
-
-// lazy load SettingDrawer
-const SettingDrawer = React.lazy(() => import('@/components/SettingDrawer'));
 
 const { Content } = Layout;
 
@@ -70,72 +61,6 @@ class BasicLayout extends React.Component {
       type: 'menu/fetchMenuData',
       payload: { routes, path, authority },
     });
-    const tentid = getTenantId();
-    if (clientId === 'kspt_driver' && (tentid === '257720' || tentid === '610791')) {
-      const that = this;
-      try {
-        if (Func.notEmpty(Version) && Func.notEmpty(Version.getVersion())) {
-          const versionName = '';
-          const versionSplit = Version.getVersion(versionName);
-          const verSplit = versionSplit.split('--');
-        }
-      } catch (e) {
-        const param = {
-          pushUserId: userId,
-          tenantId: getTenantId(),
-        };
-        findNoList(param).then(resp => {
-          if (resp.success) {
-            resp.data.map(item => {
-              return notification.open({
-                message: item.title,
-                btn: (
-                  <button
-                    type="button"
-                    className="ant-btn ant-btn-primary ant-btn-sm"
-                    onClick={() => this.btnClick(item.id)}
-                  >
-                    标记已读
-                  </button>
-                ),
-                description: item.content,
-                onClose: close,
-                key: item.id,
-                duration: null,
-              });
-            });
-          }
-        });
-        that.interval = setInterval(() => {
-          findNoList(param).then(resp => {
-            if (resp.success) {
-              resp.data.map(item => {
-                return notification.open({
-                  message: item.title,
-                  btn: (
-                    <button
-                      type="button"
-                      className="ant-btn ant-btn-primary ant-btn-sm"
-                      onClick={() => this.btnClick(item.id)}
-                    >
-                      标记已读
-                    </button>
-                  ),
-                  description: item.content,
-                  onClose: close,
-                  key: item.id,
-                  duration: null,
-                });
-              });
-            }
-          });
-        }, 60000 * 30); // 30分钟请求一次
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   getContext() {
@@ -172,13 +97,6 @@ class BasicLayout extends React.Component {
     });
   };
 
-  renderSettingDrawer = () => {
-    if (process.env.NODE_ENV === 'production' && process.env.APP_TYPE !== 'site') {
-      return null;
-    }
-    return <SettingDrawer />;
-  };
-
   render() {
     const {
       navTheme,
@@ -197,16 +115,6 @@ class BasicLayout extends React.Component {
     const contentStyle = !fixedHeader ? { paddingTop: 0 } : { marginBottom: 84 };
     const layout = (
       <Layout>
-        {isTop && !isMobile ? null : (
-          <SiderMenu
-            logo={logo}
-            theme={navTheme}
-            onCollapse={this.handleMenuCollapse}
-            menuData={menuData}
-            isMobile={isMobile}
-            {...this.props}
-          />
-        )}
         <Layout
           style={{
             ...this.getLayoutStyle(),
@@ -216,23 +124,15 @@ class BasicLayout extends React.Component {
           <Content className="content" style={contentStyle}>
             {children}
           </Content>
-          {pathname.includes('dashboard') ||
-          pathname === '/network/waybill' ||
-          pathname === '/shopcenter/mallhomepage/list' ||
-          pathname === '/driverSide/personal/personalShipper' ||
-          pathname === '/driverSide/personal/personalCenter' ? (
-            <Header
-              menuData={menuData}
-              handleMenuCollapse={this.handleMenuCollapse}
-              logo={logo}
-              indexIcon={indexIcon}
-              isMobile={isMobile}
-              id="Header"
-              {...this.props}
-            />
-          ) : (
-            ''
-          )}
+          <Header
+            menuData={menuData}
+            handleMenuCollapse={this.handleMenuCollapse}
+            logo={logo}
+            indexIcon={indexIcon}
+            isMobile={isMobile}
+            id="Header"
+            {...this.props}
+          />
         </Layout>
       </Layout>
     );

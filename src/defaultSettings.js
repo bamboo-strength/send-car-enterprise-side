@@ -8,7 +8,6 @@ module.exports = {
   // clientId: 'kspt_driver', // 司机端id
   // clientSecret: 'saas_kspt_driver', // 司机端密钥
   project: 'kspt', // wlhy 判断是否是网络货运
-  // project:'wlhy',
   logoImgUrl: 'https://fhf.dachebenteng.com',
   homePage: '11',
   tenantMode: true, // 开启租户模式

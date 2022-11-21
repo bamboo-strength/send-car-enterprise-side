@@ -80,47 +80,47 @@ class CommonListView extends PureComponent {
       ...param,
       ...originParam
     };
-    path(params).then((resp) => {
-        const { dataSource } = this.state;
-        const {data} = resp
-        const {total,records} = data
-        const tempdata = records
-        const len = tempdata.length;
-        if (len <= 0) { // 判断是否已经没有数据了
+    // path(params).then((resp) => {
+    //     const { dataSource } = this.state;
+    //     const {data} = resp
+    //     const {total,records} = data
+    //     const tempdata = records
+    //     const len = tempdata.length;
+    //     if (len <= 0) { // 判断是否已经没有数据了
           this.setState({
             refreshing: false,
             isLoading: false,
             searchLoading:false,
             hasMore: false,
-            total
+            total: 0
           });
-        }
-        if (ref) { // 下拉刷新
-          this.setState({
-            pageNo,
-            dataSource: dataSource.cloneWithRows(tempdata), // 数据源中的数据本身是不可修改的,要更新datasource中的数据，请（每次都重新）调用cloneWithRows方法
-            hasMore: true, // 下拉刷新后，重新允许开下拉加载
-            refreshing: false, // 是否在刷新数据
-            isLoading: false, // 是否在加载中
-            searchLoading:false,
-            realdata: tempdata, // 保存数据进state，在下拉加载时需要使用已有数据
-            total,
-          });
-        } else { // 上拉加载
-          // 合并state中已有的数据和新增的数据
-          const dataArr = realdata.concat(tempdata); // 关键代码
-          this.setState({
-            pageNo,
-            dataSource: dataSource.cloneWithRows(dataArr), // 数据源中的数据本身是不可修改的,要更新datasource中的数据，请（每次都重新）调用cloneWithRows方法
-            refreshing: false,
-            isLoading: false,
-            searchLoading:false,
-            realdata: dataArr, // 保存新数据进state
-            total
-          });
-        }
+    //     }
+    //     if (ref) { // 下拉刷新
+    //       this.setState({
+    //         pageNo,
+    //         dataSource: dataSource.cloneWithRows(tempdata), // 数据源中的数据本身是不可修改的,要更新datasource中的数据，请（每次都重新）调用cloneWithRows方法
+    //         hasMore: true, // 下拉刷新后，重新允许开下拉加载
+    //         refreshing: false, // 是否在刷新数据
+    //         isLoading: false, // 是否在加载中
+    //         searchLoading:false,
+    //         realdata: tempdata, // 保存数据进state，在下拉加载时需要使用已有数据
+    //         total,
+    //       });
+    //     } else { // 上拉加载
+    //       // 合并state中已有的数据和新增的数据
+    //       const dataArr = realdata.concat(tempdata); // 关键代码
+    //       this.setState({
+    //         pageNo,
+    //         dataSource: dataSource.cloneWithRows(dataArr), // 数据源中的数据本身是不可修改的,要更新datasource中的数据，请（每次都重新）调用cloneWithRows方法
+    //         refreshing: false,
+    //         isLoading: false,
+    //         searchLoading:false,
+    //         realdata: dataArr, // 保存新数据进state
+    //         total
+    //       });
+    //     }
 
-    });
+    // });
   };
 
   // 下拉刷新
@@ -295,8 +295,9 @@ class CommonListView extends PureComponent {
 
 
   render() {
-    const { dataSource, isLoading, searchLoading,onScrollChanges, refreshing,buttons,showSearchModal,tableCondition=false} = this.state;
+    const { isLoading, searchLoading,onScrollChanges, refreshing,buttons,showSearchModal,tableCondition=false} = this.state;
     const {functionName,location,rows,customBtn,extra} = this.props
+    const dataSource = { _cachedRowCount: '' }
     const { _cachedRowCount } = dataSource;
     const height = `calc( 100vh - 200px)`;
     const actionButtons = buttons.filter(button => button.alias !== 'add' && button.alias !== 'view' && !button.alias.includes('justForPC') && button.action !== 4);

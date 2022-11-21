@@ -122,66 +122,7 @@ class Menu extends PureComponent {
           首页(司机端)
         </NavBar>
         <div className="am-list">
-          <div className="myCarousel">
-            <Icon type="sound" style={{ margin: '0 5px 0 15px', fontSize: 15 }} />
-            {noticeList.length > 0 ? (
-              <Carousel vertical dots={false} dragging={false} swiping={false} autoplay infinite>
-                {noticeList.map(item => (
-                  <div
-                    className="v-item"
-                    style={carStyle}
-                    key={item.id}
-                    onClick={() =>
-                      router.push({
-                        pathname: '/desk/notice/list',
-                        state: {
-                          backUrl: '/dashboard/menu',
-                        },
-                      })
-                    }
-                  >
-                    通知：{item.title}
-                  </div>
-                ))}
-              </Carousel>
-            ) : (
-              <span>暂无通知消息</span>
-            )}
-          </div>
           <WhiteSpace size="ml" style={{ height: '0.5px' }} />
-          {/* {menuData.map(item => {
-            if (item.children) {
-              item.children.map((sub, index) => {
-                const { icon, isOpen } = sub;
-                if (isOpen === 3) {
-                  const color = colors[index % 4];
-                  data.push({
-                    icon: (
-                      <div className="iconForIndex">
-                        {' '}
-                        <div style={{ background: color }} className="iconNameForIndex">
-                          {func.notEmpty(icon) && icon.indexOf('.png') !== -1 ? (
-                            <img src={`https://fhf.dachebenteng.com/menuPics/${sub.icon}`} alt="" />
-                          ) : (
-                            <Icon
-                              type={icon || 'plus-circle'}
-                              style={{ fontSize: '18px' }}
-                              theme="twoTone"
-                              twoToneColor="white"
-                            />
-                          )}
-                        </div>
-                      </div>
-                    ),
-                    text: sub.name,
-                    url: sub.path,
-                  });
-                }
-                return true;
-              });
-            }
-            return true;
-          })} */}
           <Grid
             data={data}
             columnNum="4"

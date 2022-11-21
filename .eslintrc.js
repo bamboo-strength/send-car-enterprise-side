@@ -22,6 +22,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'react/no-unknown-property': 'off',
     'react/jsx-closing-tag-location': 0,
+    'react/no-array-index-key': 0,
     'import/no-unresolved': [2, { ignore: ['^@/', '^umi/'] }],
     'import/order': 'off',
     'import/extensions': 'off',

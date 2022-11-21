@@ -36,25 +36,15 @@ class Function extends PureComponent {
     const data = [];
     return (
       <div className={menu.mobileMenu}>
-        <NavBar mode="light">功能(客户端)</NavBar>
+        <NavBar mode="light">首页(司机端)</NavBar>
         <div className="am-list" style={{ paddingBottom: '84px' }}>
           {menuData.forEach(item => {
             if (item.children) {
               item.children.forEach((sub, index) => {
                 const { icon } = sub;
-                let color = '';
-                if (index % 4 === 0) {
-                  color = '#4581f5';
-                } else if (index % 4 === 1) {
-                  color = '#ea6930';
-                } else if (index % 4 === 2) {
-                  color = '#56ba88';
-                } else {
-                  color = '#f1ac41';
-                }
                 data.push({
                   icon: (
-                    <div style={{ background: color }} className="iconName">
+                    <div style={{ background: '#4581f5' }} className="iconName">
                       <Icon
                         type={icon || 'plus-circle'}
                         style={{ fontSize: '28px' }}

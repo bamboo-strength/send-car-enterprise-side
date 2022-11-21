@@ -1,14 +1,11 @@
 import React from 'react';
-import { formatMessage } from 'umi/locale';
-import { Layout, message, Modal } from 'antd';
+import { Layout } from 'antd';
 import Animate from 'rc-animate';
 import { connect } from 'dva';
 import router from 'umi/router';
 import GlobalHeader from '@/components/GlobalHeader';
-import TopNavHeader from '@/components/TopNavHeader';
 import styles from './Header.less';
 import { getCurrentUser } from '@/utils/authority';
-import { clearNotices } from '../services/api';
 
 const { Footer } = Layout;
 
@@ -19,9 +16,9 @@ class HeaderView extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state={
-      indexIcon:props.indexIcon
-    }
+    this.state = {
+      indexIcon: props.indexIcon,
+    };
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -48,76 +45,6 @@ class HeaderView extends React.Component {
       return '100%';
     }
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
-  };
-
-  handleNoticeClear = type => {
-    message.success(
-      `${formatMessage({ id: 'component.noticeIcon.cleared' })} ${formatMessage({
-        id: `component.globalHeader.${type}`,
-      })}`,
-    );
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'global/clearNotices',
-      payload: type,
-    });
-    clearNotices(type).then((res) => {
-      console.log(`ending${res}`);
-    });
-  };
-
-  handleMenuClick = ({ key }) => {;
-    let tenant = '';
-    // console.log(getCurrentUser());
-    if (getCurrentUser() !== null && getCurrentUser().tenantId !== undefined && getCurrentUser().tenantId !== 'undefined' && getCurrentUser().tenantId !== null) {
-      tenant = getCurrentUser().tenantId;
-    }
-
-    const { dispatch } = this.props;
-    if (key === 'userCenter') {
-      message.success('即将开放');
-      // router.push('/account/center');
-      return;
-    }
-    if (key === 'userinfo') {
-      message.success('即将开放');
-      // router.push('/account/settings/base');
-      return;
-    }
-    if (key === 'triggerError') {
-      router.push('/exception/trigger');
-      return;
-    }
-    if (key === 'updatePassword') {
-      router.push('/system/changepassword');
-      return;
-    }
-    if (key === 'logout') {
-        Modal.confirm({
-          title: '退出确认',
-          content: '是否确定退出登录？',
-          okText: '确定',
-          okType: 'danger',
-          cancelText: '取消',
-          onOk() {
-            dispatch({
-              type: 'login/logout',
-              payload: tenant,
-            });
-          },
-          onCancel() {
-          },
-        });
-    }
-  };
-
-  handleNoticeVisibleChange = visible => {
-    if (visible) {
-      const { dispatch } = this.props;
-      dispatch({
-        type: 'global/fetchNotices',
-      });
-    }
   };
 
   handScroll = () => {
@@ -150,40 +77,23 @@ class HeaderView extends React.Component {
   };
 
   render() {
-    const { isMobile, handleMenuCollapse, setting,indexIcon,id } = this.props;
+    const { isMobile, handleMenuCollapse, setting, indexIcon, id } = this.props;
     const { navTheme, layout, fixedHeader } = setting;
     const { visible } = this.state;
     const isTop = layout === 'topmenu';
     const width = this.getHeadWidth();
 
-    // console.log(indexIcon)
-
     const HeaderDom = visible ? (
-      <Footer style={{ padding: 0, width }} className={fixedHeader ? styles.fixedHeader : ''} id={id}>
-        {isTop && !isMobile ? (
-          <TopNavHeader
-            theme={navTheme}
-            mode="horizontal"
-            onCollapse={handleMenuCollapse}
-            onNoticeClear={this.handleNoticeClear}
-            onMenuClick={this.handleMenuClick}
-            onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            {...this.props}
-          />
-        ) : (
-          <GlobalHeader
-            onCollapse={handleMenuCollapse}
-            indexIcon={indexIcon}
-            onNoticeClear={this.handleNoticeClear}
-            onMenuClick={this.handleMenuClick}
-            onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            {...this.props}
-          />
-        )}
+      <Footer
+        style={{ padding: 0, width }}
+        className={fixedHeader ? styles.fixedHeader : ''}
+        id={id}
+      >
+        <GlobalHeader indexIcon={indexIcon} {...this.props} />
       </Footer>
     ) : null;
     return (
-      <Animate component="" transitionName="fade">
+      <Animate transitionName="fade">
         {HeaderDom}
       </Animate>
     );

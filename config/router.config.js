@@ -784,13 +784,7 @@ export default [
     routes: [
       {
         path: '/',
-        redirect: '/dashboard/menu',
-        authority: ['administrator', 'admin', 'user', 'test'],
-      },
-      {
-        path: '/wlhy',
-        redirect: '/dashboard/freight',
-        authority: ['administrator', 'admin', 'user', 'test'],
+        redirect: '/dashboard/function'
       },
       {
         path: '/result',
@@ -949,7 +943,6 @@ export default [
           { path: '/dashboard/menu', component: './Dashboard/Menu' },
           { path: '/dashboard/function', component: './Dashboard/Function' },
           { path: '/dashboard/networkfreight', component: './Dashboard/NetworkFreight' },
-          { path: '/dashboard/freight', component: './Dashboard/Freight' },
           { path: '/dashboard/SupplyHall', component: './Dashboard/SupplyHall' },
           { path: '/dashboard/Photograph', component: './PageMould/Photograph' },
           { path: '/dashboard/zhongchepaizhao', component: './PageMould/Zhongchepaizhao' },
