@@ -2,17 +2,17 @@ import React from 'react';
 import './Stateless.less';
 import { ImagePageFault, img990 } from '@/components/Matrix/image';
 import { Button, Spin } from 'antd';
-import style from '@/pages/ShopCenter/ShopCenter.less';
+import style from './ShopCenter.less';
 import { Result } from 'antd-mobile';
 
 /* 空白数据占位符 */
-const heights = 'calc( 100vh - 100px)';
+const heights = 'calc(100vh - 100px)';
 
 export function EmptyData(props) {
   const { text, height } = props;
   return (
-    <div className='emptyData divBg' style={{ height: height || heights }}>
-      <img src={img990} alt=''/>
+    <div className="emptyData divBg" style={{ height: height || heights }}>
+      <img src={img990} alt="" />
       <h2>{text || '暂无数据'}</h2>
     </div>
   );
@@ -22,8 +22,8 @@ export function EmptyData(props) {
 export function InTheLoad(props) {
   const { size, tip, height } = props;
   return (
-    <div className='emptyData divBg' style={{ height: height || heights }}>
-      <Spin size={size || 'large'} tip={tip || '加载中'}/>
+    <div className="emptyData divBg" style={{ height: height || heights }}>
+      <Spin size={size || 'large'} tip={tip || '加载中'} />
     </div>
   );
 }
@@ -32,8 +32,19 @@ export function InTheLoad(props) {
 export function SubmitBtn(props) {
   const { loading, onClick } = props;
   return (
-    <div style={{ background: 'white', padding: 15, position: 'fixed', bottom: 0, width: '100%', zIndex: 1 }}>
-      <Button type="primary" size="large" block loading={loading} onClick={onClick}>提交</Button>
+    <div
+      style={{
+        background: 'white',
+        padding: 15,
+        position: 'fixed',
+        bottom: 0,
+        width: '100%',
+        zIndex: 1,
+      }}
+    >
+      <Button type="primary" size="large" block loading={loading} onClick={onClick}>
+        提交
+      </Button>
     </div>
   );
 }
@@ -43,17 +54,14 @@ export function PageFault(props) {
   const { title } = props;
   return (
     <div className={`${style.shopCenter} am-list`}>
-      <Result
-        imgUrl={ImagePageFault}
-        title={title || '页面出错'}
-        className='page-fault-result'
-      />
+      <Result imgUrl={ImagePageFault} title={title || '页面出错'} className="page-fault-result" />
     </div>
   );
 }
 
 function closest(el, selector) {
-  const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+  const matchesSelector =
+    el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
   while (el) {
     if (matchesSelector.call(el, selector)) {
       return el;
@@ -64,7 +72,7 @@ function closest(el, selector) {
 }
 
 // 修复触摸在iOS上滚动背景页面
-export const onWrapTouchStart = (e) => {
+export const onWrapTouchStart = e => {
   // fix touch to scroll background page on iOS
   if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
     return;

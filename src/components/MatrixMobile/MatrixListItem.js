@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { List } from 'antd-mobile';
-import '../../pages/ShopCenter/ShopCenter.less';
+import '../Stateless/ShopCenter.less';
 import Text from 'antd/lib/typography/Text';
 import ImageShow from '@/components/ImageShow/ImageShow';
 

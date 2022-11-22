@@ -31,3 +31,58 @@
 .trader {
   color: #1890ff;
 }
+
+.truckingOrder {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f0f2f5;
+
+  :global {
+    .am-navbar {
+      position: static;
+    }
+
+    .ant-card-head {
+      padding: 0 16px;
+      min-height: 42px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 0;
+    }
+
+    .ant-card-body {
+      padding: 0;
+    }
+
+    .am-list {
+      position: static;
+
+      .am-list-item {
+        padding: 0 16px;
+
+        .am-list-content {
+          font-size: 14px;
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+
+      .am-list-item:not(:last-child) {
+        .am-list-line {
+          border-bottom: 1px solid #ddd !important;
+        }
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  .footer {
+    border-top: 1px solid #DDD;
+    padding: 8px 12px;
+  }
+}

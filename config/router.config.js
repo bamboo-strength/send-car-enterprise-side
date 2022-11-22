@@ -765,6 +765,7 @@ export default [
     path: '/truck',
     routes: [
       { path: '/truck/order', component: './TruckingOrder/list' },
+      { path: '/truck/details', component: './TruckingOrder/details'}
     ]
   },
   {

@@ -29,7 +29,6 @@ const dataSource1 = new ListView.DataSource({
 }))
 @Form.create()
 class Waybill extends PureComponent {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -51,12 +50,16 @@ class Waybill extends PureComponent {
       rowData: {},
       rowDataOne: {},
       load: localStorage.getItem('load'),
-      tabs: [{ title: '全部', key: '1' }, { title: '执行中', key: '2' }, { title: '已完结', key: '3' }],
+      tabs: [
+        { title: '全部', key: '1' },
+        { title: '执行中', key: '2' },
+        { title: '已完结', key: '3' },
+      ],
       checked: false,
       order: false,
-      confirmLoading:false,
-      onSiteLoading:false,
-      rateallstate:false
+      confirmLoading: false,
+      onSiteLoading: false,
+      rateallstate: false,
     };
   }
 
@@ -65,15 +68,12 @@ class Waybill extends PureComponent {
     if (location.state !== undefined) {
       const sourcegoodsid = location.state.sourceGoodsId;
       this.getData(false, {}, sourcegoodsid);
-
     } else {
       this.getData(false, {});
     }
     const {
       dispatch,
-      merDriver: {
-        detail,
-      },
+      merDriver: { detail },
     } = this.props;
     dispatch(MERDRIVER_DETAIL(getCurrentUser().userId));
     this.setState({
@@ -94,11 +94,18 @@ class Waybill extends PureComponent {
     param.sourceGoodsId = sourcegoodsid;
     delete param.settlementEfficiency;
     delete param.matchDegreeScore;
-    if(param.flag==1){
-      delete param.flag
+    if (param.flag === 1) {
+      delete param.flag;
     }
     list(param).then(resp => {
-      const tempdata = typeof resp.data === 'string' ? (func.notEmpty(resp.data) ? JSON.parse(resp.data) : []) : (func.notEmpty(resp.data.records) ? resp.data.records : []);
+      const tempdata =
+        typeof resp.data === 'string'
+          ? func.notEmpty(resp.data)
+            ? JSON.parse(resp.data)
+            : []
+          : func.notEmpty(resp.data.records)
+          ? resp.data.records
+          : [];
       const len = tempdata.length;
       if (len <= 0) {
         this.setState({
@@ -107,7 +114,8 @@ class Waybill extends PureComponent {
           hasMore: false,
         });
       }
-      if (ref) { // 下拉刷新
+      if (ref) {
+        // 下拉刷新
         this.setState({
           pageNo,
           dataSource: dataSource.cloneWithRows(tempdata),
@@ -116,7 +124,8 @@ class Waybill extends PureComponent {
           isLoading: false,
           realdata: tempdata,
         });
-      } else { // 上拉加载
+      } else {
+        // 上拉加载
         const dataArr = realdata.concat(tempdata);
         this.setState({
           pageNo,
@@ -131,13 +140,16 @@ class Waybill extends PureComponent {
 
   // 下拉刷新
   onRefresh = () => {
-    this.setState({
-      refreshing: true,
-      isLoading: true,
-      pageNo: 1,
-    }, () => {
-      this.query(true, {});
-    });
+    this.setState(
+      {
+        refreshing: true,
+        isLoading: true,
+        pageNo: 1,
+      },
+      () => {
+        this.query(true, {});
+      }
+    );
   };
 
   onEndReached = () => {
@@ -145,12 +157,15 @@ class Waybill extends PureComponent {
     if (isLoading && !hasMore) {
       return;
     }
-    this.setState({
-      isLoading: true,
-      pageNo: pageNo + 1, // 加载下一页
-    }, () => {
-      this.query(false, {});
-    });
+    this.setState(
+      {
+        isLoading: true,
+        pageNo: pageNo + 1, // 加载下一页
+      },
+      () => {
+        this.query(false, {});
+      }
+    );
   };
 
   query = (flag, param) => {
@@ -163,7 +178,6 @@ class Waybill extends PureComponent {
       if (location.state !== undefined) {
         const sourcegoodsid = location.state.sourceGoodsId;
         this.getData(flag, values, sourcegoodsid);
-
       } else {
         this.getData(flag, values);
       }
@@ -174,23 +188,29 @@ class Waybill extends PureComponent {
   reset = () => {
     const { form } = this.props;
     form.resetFields();
-    this.setState({
-      pageNo: 1,
-    }, () => {
-      this.query(true, {});
-    });
+    this.setState(
+      {
+        pageNo: 1,
+      },
+      () => {
+        this.query(true, {});
+      }
+    );
   };
 
-  changeTab = (tab) => {
-    this.setState({
-      pageNo: 1,
-      waybillStatus: tab.key,
-      dataSource: dataSource1,
-      isLoading: true,
-      load: localStorage.removeItem('load'),
-    }, () => {
-      this.query(true, {});
-    });
+  changeTab = tab => {
+    this.setState(
+      {
+        pageNo: 1,
+        waybillStatus: tab.key,
+        dataSource: dataSource1,
+        isLoading: true,
+        load: localStorage.removeItem('load'),
+      },
+      () => {
+        this.query(true, {});
+      }
+    );
   };
 
   agreeItem = a => {
@@ -215,11 +235,11 @@ class Waybill extends PureComponent {
       onSiteLoading: true,
       rowDataOne: rowData,
     });
-  };// onSiteLoading
+  }; // onSiteLoading
 
-  distanceVerification=()=> {
-    const {rowDataOne}=this.state
-    this.setState({confirmLoading:true})
+  distanceVerification = () => {
+    const { rowDataOne } = this.state;
+    this.setState({ confirmLoading: true });
     // const state = LocationStatus.getLocationStatus();
     // if (JSON.stringify(JSON.parse(state)) === 'false') {
     //   Toast.offline('请检查定位开启状态！！');
@@ -230,26 +250,26 @@ class Waybill extends PureComponent {
     //   longitude: JSON.stringify(JSON.parse(location).longitude),
     //   latitude: JSON.stringify(JSON.parse(location).latitude),
     // };
-    const param={
-      id:rowDataOne.id,
-      arriveAddressCoordinate:'173,36'
-    }
-    arrive(param).then((res)=>{
-      if(res.success){
-        Toast.success(res.msg)
+    const param = {
+      id: rowDataOne.id,
+      arriveAddressCoordinate: '173,36',
+    };
+    arrive(param).then(res => {
+      if (res.success) {
+        Toast.success(res.msg);
         this.setState({
           onSiteLoading: false,
-          confirmLoading:false
-        })
+          confirmLoading: false,
+        });
         this.query(true, {});
-      }else{
+      } else {
         this.setState({
           onSiteLoading: false,
-          confirmLoading:false
-        })
+          confirmLoading: false,
+        });
       }
-    })
-  }
+    });
+  };
 
   signMethod = () => {
     const refresh = this.reset;
@@ -259,9 +279,9 @@ class Waybill extends PureComponent {
       return;
     }
     this.setState({
-      confirmLoading:true
-    })
-    orderTakeVerify({ type: 1, id: rowDataOne.id }).then((resp0) => {
+      confirmLoading: true,
+    });
+    orderTakeVerify({ type: 1, id: rowDataOne.id }).then(resp0 => {
       if (resp0.success) {
         sign({ id: rowDataOne.id, agreement: checked ? 1 : 0 }).then(res => {
           if (res.success) {
@@ -274,24 +294,24 @@ class Waybill extends PureComponent {
                 Toast.success(res1.msg);
                 refresh();
                 localStorage.setItem('load', 2);
-              }else{
+              } else {
                 this.setState({
-                  confirmLoading:false
-                })
+                  confirmLoading: false,
+                });
               }
             });
           } else {
             this.setState({
               order: false,
               checked: false,
-              confirmLoading:false
+              confirmLoading: false,
             });
           }
         });
-      }else{
+      } else {
         this.setState({
-          confirmLoading:false
-        })
+          confirmLoading: false,
+        });
       }
     });
   };
@@ -309,72 +329,65 @@ class Waybill extends PureComponent {
   submitLoad = (e, rowData) => {
     e.stopPropagation();
     const { waybillStatus } = this.state;
-    router.push(
-      {
-        pathname: `/network/waybill/loadConfirm/${rowData.id}`,
-        state: {
-          type: 'submitLoad',
-          rowData,
-          initialPage: waybillStatus,
-        },
+    router.push({
+      pathname: `/network/waybill/loadConfirm/${rowData.id}`,
+      state: {
+        type: 'submitLoad',
+        rowData,
+        initialPage: waybillStatus,
       },
-    );
+    });
   };
 
   // 重新上传装货确认
   submitAgainLoad = (e, rowData) => {
     e.stopPropagation();
     const { waybillStatus } = this.state;
-    router.push(
-      {
-        pathname: `/vehicleCarMatching/waybillmanagement/loadConfirm/${rowData.id}`,
-        state: {
-          type: 'submitAgainLoad',
-          rowData,
-          initialPage: waybillStatus,
-        },
+    router.push({
+      pathname: `/vehicleCarMatching/waybillmanagement/loadConfirm/${rowData.id}`,
+      state: {
+        type: 'submitAgainLoad',
+        rowData,
+        initialPage: waybillStatus,
       },
-    );
+    });
   };
 
   // 卸货确认
   submitSign = (e, rowData) => {
     e.stopPropagation();
     const { waybillStatus } = this.state;
-    router.push(
-      {
-        pathname: `/vehicleCarMatching/waybillmanagement/loadConfirm/${rowData.id}`,
-        state: {
-          type: 'submitSign',
-          rowData,
-          initialPage: waybillStatus,
-        },
+    router.push({
+      pathname: `/vehicleCarMatching/waybillmanagement/loadConfirm/${rowData.id}`,
+      state: {
+        type: 'submitSign',
+        rowData,
+        initialPage: waybillStatus,
       },
-    );
+    });
   };
 
   // 重新上传卸货信息
   submitAgainSign = (e, rowData) => {
     e.stopPropagation();
     const { waybillStatus } = this.state;
-    router.push(
-      {
-        pathname: `/vehicleCarMatching/waybillmanagement/loadConfirm/${rowData.id}`,
-        state: {
-          type: 'submitAgainSign',
-          rowData,
-          initialPage: waybillStatus,
-        },
+    router.push({
+      pathname: `/vehicleCarMatching/waybillmanagement/loadConfirm/${rowData.id}`,
+      state: {
+        type: 'submitAgainSign',
+        rowData,
+        initialPage: waybillStatus,
       },
-    );
+    });
   };
 
   // ***********评价***************
-  evaluate = (e, rowData) => {  // 评价
+  evaluate = (e, rowData) => {
+    // 评价
     e.stopPropagation();
-    if(rowData.evaluationDriverStatus === 1){
-      Toast.fail('该运单已经评价不能重复评价！')
-    }else {
+    if (rowData.evaluationDriverStatus === 1) {
+      Toast.fail('该运单已经评价不能重复评价！');
+    } else {
       this.setState({
         rateShow: true,
         rowData,
@@ -382,13 +395,12 @@ class Waybill extends PureComponent {
     }
   };
 
-  rateChange = () => {
-  };
+  rateChange = () => {};
 
   /* 评价 */
   confirmRate = () => {
     const { form } = this.props;
-    const { rowData,rateallstate } = this.state;
+    const { rowData, rateallstate } = this.state;
     const refresh = this.reset;
     form.validateFields((error, values) => {
       const { settlementEfficiency, matchDegreeScore } = values;
@@ -402,17 +414,17 @@ class Waybill extends PureComponent {
         return;
       }
       const scoreType = {
-        7: settlementEfficiency*2,
-        6: matchDegreeScore*2,
+        7: settlementEfficiency * 2,
+        6: matchDegreeScore * 2,
       };
-      const param={
+      const param = {
         evaluationType: 2,
         waybillid: rowData.id,
         scoreType,
-        batch:1
-      }
-      if(!rateallstate){
-        delete param.batch
+        batch: 1,
+      };
+      if (!rateallstate) {
+        delete param.batch;
       }
       evaluation(param).then(resp => {
         if (resp.success) {
@@ -447,11 +459,11 @@ class Waybill extends PureComponent {
     });
   };
 
-  checkboxValue=(e)=>{
+  checkboxValue = e => {
     this.setState({
-      rateallstate:e.target.checked
-    })
-  }
+      rateallstate: e.target.checked,
+    });
+  };
 
   /* 关闭弹窗 */
   hideModal = () => {
@@ -459,78 +471,143 @@ class Waybill extends PureComponent {
       visibleCancel: false,
       rateShow: false,
       order: false,
-      onSiteLoading:false
+      onSiteLoading: false,
     });
   };
 
   /* 跳转详情 */
   onNetWorkCard = rowData => {
     const { waybillStatus, load } = this.state;
-    router.push(
-      {
-        pathname: `/vehicleCarMatching/waybillmanagement/view/${rowData.id}`,
-        state: {
-          initialPage: load != null && true ? load : waybillStatus,
-        },
+    router.push({
+      pathname: `/vehicleCarMatching/waybillmanagement/view/${rowData.id}`,
+      state: {
+        initialPage: load != null && true ? load : waybillStatus,
       },
-    );
+    });
   };
 
   render() {
-    const { rowDataOne, dataSource, isLoading, refreshing, waybillStatus, rateShow, visibleCancel, load, cancelValue, tabs, order,onSiteLoading, checked,confirmLoading } = this.state;
+    const {
+      rowDataOne,
+      dataSource,
+      isLoading,
+      refreshing,
+      waybillStatus,
+      rateShow,
+      visibleCancel,
+      load,
+      cancelValue,
+      tabs,
+      order,
+      onSiteLoading,
+      checked,
+      confirmLoading,
+    } = this.state;
 
     const { form } = this.props;
-    const separator = (sectionID, rowID) => (<div
-      key={`${sectionID}-${rowID}`}
-      style={{
-        backgroundColor: '#F5F5F9',
-        height: 8,
-        borderTop: '1px solid #ECECED',
-        borderBottom: '1px solid #ECECED',
-      }}
-    />);
+    const separator = (sectionID, rowID) => (
+      <div
+        key={`${sectionID}-${rowID}`}
+        style={{
+          backgroundColor: '#F5F5F9',
+          height: 8,
+          borderTop: '1px solid #ECECED',
+          borderBottom: '1px solid #ECECED',
+        }}
+      />
+    );
 
     const row = (rowData, sectionID, rowID) => {
-      let actions = ([]);
+      let actions = [];
       const aa = rowData.waybillStatus;
-   if (aa === 1) { /* 已接单 */
-        actions = ([
-          <Button style={{width:'92%'}} type="primary" onClick={(e) => this.onSiteLoading(e, rowData)}>到场装货确认</Button>,
-        ]);
-      } else if (aa === 3) { /* 已装运 */
-        actions = ([
-          <Button style={{width:'92%'}} type="primary" onClick={(e) => this.submitSign(e, rowData)}>卸货确认</Button>,
-        ]);
-      } else if (aa === 4||aa === 5) { /* 已送达、已签收 */
-        actions = ([
-          rowData.evaluationDriverStatus===1  ?
-            <div style={{ color: '#1890FF' }} onClick={(e) => rowData.evaluationDriverStatus===0?this.evaluate(e, rowData):''}> {rowData.evaluationDriverStatus===1?'已评价':<Button>评价</Button>}</div>
-            :
+      if (aa === 1) {
+        /* 已接单 */
+        actions = [
+          <Button
+            style={{ width: '92%' }}
+            type="primary"
+            onClick={e => this.onSiteLoading(e, rowData)}
+          >
+            到场装货确认
+          </Button>,
+        ];
+      } else if (aa === 3) {
+        /* 已装运 */
+        actions = [
+          <Button
+            style={{ width: '92%' }}
+            type="primary"
+            onClick={e => this.submitSign(e, rowData)}
+          >
+            卸货确认
+          </Button>,
+        ];
+      } else if (aa === 4 || aa === 5) {
+        /* 已送达、已签收 */
+        actions = [
+          rowData.evaluationDriverStatus === 1 ? (
+            <div
+              style={{ color: '#1890FF' }}
+              onClick={e => (rowData.evaluationDriverStatus === 0 ? this.evaluate(e, rowData) : '')}
+            >
+              {' '}
+              {rowData.evaluationDriverStatus === 1 ? '已评价' : <Button>评价</Button>}
+            </div>
+          ) : (
             <div>
-              <div style={{float:'left',paddingLeft:'20px'}}>
-                <Button type="primary" style={{paddingRight:'20px'}} onClick={(e) => this.submitAgainSign(e, rowData)}>重新上传卸货信息</Button>
+              <div style={{ float: 'left', paddingLeft: '20px' }}>
+                <Button
+                  type="primary"
+                  style={{ paddingRight: '20px' }}
+                  onClick={e => this.submitAgainSign(e, rowData)}
+                >
+                  重新上传卸货信息
+                </Button>
               </div>
-              <div style={{ color: '#1890FF',float:'right',paddingRight:'20px'}}> {rowData.evaluationDriverStatus===1?'已评价':<Button type='primary' onClick={(e) => rowData.evaluationDriverStatus===0?this.evaluate(e, rowData):''}>评价</Button>}</div>
-            </div>,
-        ]);
-      } else{
-          actions = ([
-            // <div style={{ color: '#1890FF' }}>已评价</div>,
-          ]);
-        }
+              <div style={{ color: '#1890FF', float: 'right', paddingRight: '20px' }}>
+                {' '}
+                {rowData.evaluationDriverStatus === 1 ? (
+                  '已评价'
+                ) : (
+                  <Button
+                    type="primary"
+                    onClick={e =>
+                      rowData.evaluationDriverStatus === 0 ? this.evaluate(e, rowData) : ''
+                    }
+                  >
+                    评价
+                  </Button>
+                )}
+              </div>
+            </div>
+          ),
+        ];
+      } else {
+        actions = [
+          // <div style={{ color: '#1890FF' }}>已评价</div>,
+        ];
+      }
 
       return (
         <div key={rowID}>
-          <NetWorkCard rowData={rowData} actions={actions} onclick={() => this.onNetWorkCard(rowData)} />
+          <NetWorkCard
+            rowData={rowData}
+            actions={actions}
+            onclick={() => this.onNetWorkCard(rowData)}
+          />
         </div>
       );
     };
 
     const listView = (
       <ListView
-        ref={el => this.lv = el}
+        ref={el => (this.lv = el)}
         dataSource={dataSource}
-        renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>{isLoading ? '加载中...' : '加载完毕'}</div>)}
+        renderFooter={() => (
+          <div style={{ padding: 30, textAlign: 'center' }}>
+            {isLoading ? '加载中...' : '加载完毕'}
+          </div>
+        )}
         renderRow={row}
         renderSeparator={separator}
         pageSize={4}
@@ -541,23 +618,31 @@ class Waybill extends PureComponent {
         onEndReachedThreshold={10}
       />
     );
-    const radioValue = [{ value: 1, content: '取消计划变更' }, { value: 2, content: '运费价格因素' }, {
-      value: 3,
-      content: '运输计划有变',
-    }, { value: 4, content: '装车时间超时' }, { value: 5, content: '其他原因' }];
+    const radioValue = [
+      { value: 1, content: '取消计划变更' },
+      { value: 2, content: '运费价格因素' },
+      {
+        value: 3,
+        content: '运输计划有变',
+      },
+      { value: 4, content: '装车时间超时' },
+      { value: 5, content: '其他原因' },
+    ];
 
     const ifFromOtherSite = localStorage.getItem('ifFromOtherSite');
     return (
       <div id={NetWorkLess.netWork}>
-        {
-          ifFromOtherSite === 'ok' ? undefined :
+        {ifFromOtherSite === 'ok' ? (
+          undefined
+        ) : (
           <NavBar
             mode="light"
             icon={<Icon type="left" />}
             onLeftClick={() => router.push('/dashboard/SupplyHall')}
-          >全部运单
+          >
+            全部运单
           </NavBar>
-        }
+        )}
 
         <div className={ifFromOtherSite === 'ok' ? 'am-list-nestPage' : 'am-list'}>
           <Tabs
@@ -566,15 +651,15 @@ class Waybill extends PureComponent {
             initialPage={0}
             onChange={(tab, index) => this.changeTab(tab, index)}
           >
-            <div key='1'>{listView}</div>
-            <div key='2'>{listView}</div>
-            <div key='3'>{listView}</div>
+            <div key="1">{listView}</div>
+            <div key="2">{listView}</div>
+            <div key="3">{listView}</div>
           </Tabs>
         </div>
         <Modal
           className={NetWorkLess.netWorkRate}
           visible={rateShow}
-          title='评价'
+          title="评价"
           width={350}
           transparent
           maskClosable
@@ -584,21 +669,21 @@ class Waybill extends PureComponent {
           destroyOnClose
         >
           <NetWorkRate
-            label='运单结算效率'
-            id='settlementEfficiency'
+            label="运单结算效率"
+            id="settlementEfficiency"
             form={form}
-            onChange={(e) => {
+            onChange={e => {
               this.rateChange(e);
             }}
           />
           <div>
             <NetWorkRate
-              label='配合度'
-              id='matchDegreeScore'
+              label="配合度"
+              id="matchDegreeScore"
               form={form}
-              onChange={(e) => {
-              this.rateChange(e);
-            }}
+              onChange={e => {
+                this.rateChange(e);
+              }}
             />
             <WhiteSpace size="xl" />
             {/* <Checkbox id='rateAll' onChange={(e)=>{this.checkboxValue(e)}} style={{borderRadius:4}}>是否同步本运单货源下的其他运单</Checkbox> */}
@@ -616,7 +701,10 @@ class Waybill extends PureComponent {
         >
           <Radio.Group onChange={this.onChange} value={cancelValue}>
             {radioValue.map(item => (
-              <Radio value={item.value} style={{ height: '34px', lineHeight: '34px' }}>{item.content}</Radio>))}
+              <Radio value={item.value} style={{ height: '34px', lineHeight: '34px' }}>
+                {item.content}
+              </Radio>
+            ))}
           </Radio.Group>
         </Modal>
         <Modal
@@ -627,12 +715,15 @@ class Waybill extends PureComponent {
           onOk={this.distanceVerification}
           confirmLoading={confirmLoading}
         >
-          <Icon type="question-circle" style={{ color: '#faad14', marginRight: 16, fontSize: 22 }} />
+          <Icon
+            type="question-circle"
+            style={{ color: '#faad14', marginRight: 16, fontSize: 22 }}
+          />
           <div>
-            <Text strong style={{ fontSize: 18 }}>到场确认</Text>
-            <div style={{ marginTop: 10 }}>
-              是否已到达{rowDataOne.mineName}?
-            </div>
+            <Text strong style={{ fontSize: 18 }}>
+              到场确认
+            </Text>
+            <div style={{ marginTop: 10 }}>是否已到达{rowDataOne.mineName}?</div>
           </div>
         </Modal>
       </div>
