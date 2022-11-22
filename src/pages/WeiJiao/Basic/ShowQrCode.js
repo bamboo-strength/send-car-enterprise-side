@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import QRCode from 'qrcode.react';
 import { Icon, NavBar, Toast } from 'antd-mobile';
 import router from 'umi/router';
-import IconBgQrCode from '../../../../public/image/icon_bg_qrCode.png';
 import { requestPostHeader } from '../../../services/api';
 import { detail } from '../../../services/merDriver';
 import { getCurrentUser } from '@/utils/authority';
@@ -58,7 +57,6 @@ import { getCurrentUser } from '@/utils/authority';
     const {qrModalContent} = this.state
     // console.log(qrModalContent,'---')
   const style2 ={
-    background:`url(${IconBgQrCode})`,
     backgroundSize: '100% 100%',
     width: '310px',
     height: '310px',

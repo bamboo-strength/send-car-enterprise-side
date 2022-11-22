@@ -5,9 +5,6 @@ import router from 'umi/router';
 import { NavBar, WhiteSpace } from 'antd-mobile';
 import NetWorkCardView from '@/components/NetWorks/NetWorkCardView';
 import Text from 'antd/es/typography/Text';
-import iconPositioning from '../../../../public/Network/icon_positioning.png';
-import iconContact from '../../../../public/Network/icon_contact.png';
-import iconPhone from '../../../../public/Network/icon_phone.png';
 import { recorddetail } from '@/services/grabasingle';
 
 @Form.create()
@@ -47,8 +44,6 @@ class GrabaSingleRecordView extends PureComponent {
     );
     const actions = ([
       <div className='flex'>
-        <div><img src={iconContact} className='width' alt='' />&nbsp;&nbsp;{data.shipper}</div>
-        <img src={iconPhone} className='width' alt='' />
       </div>]);
     const route = (
       <div className='flexColumn'>
@@ -56,7 +51,6 @@ class GrabaSingleRecordView extends PureComponent {
         <WhiteSpace size='xs' />
         <Text>收货地址：{data.receiveAddressRegionName}</Text>
       </div>);
-    const actionsRoute = ([<div className='flex'><img src={iconPositioning} className='width' alt='' /></div>]);
     const Abike = (
       <div className='flexColumn'>
         <Text>司机姓名：{data.driverName}</Text>
@@ -83,7 +77,6 @@ class GrabaSingleRecordView extends PureComponent {
         </NavBar>
         <div className='am-list'>
           <NetWorkCardView title='货物信息' content={content} actions={actions} extra={splitBill === 1?extra:undefined} />
-          <NetWorkCardView title='路线信息' content={route} actions={actionsRoute} />
           <NetWorkCardView title='抢单信息' content={Abike} />
         </div>
       </div>);

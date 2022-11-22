@@ -5,8 +5,6 @@ import router from 'umi/router';
 import { NavBar, WhiteSpace } from 'antd-mobile';
 import NetWorkCardView from '@/components/NetWorks/NetWorkCardView';
 import Text from 'antd/es/typography/Text';
-import iconContact from '../../../../public/Network/icon_contact.png';
-import iconPhone from '../../../../public/Network/icon_phone.png';
 import { recorddetail } from '@/services/VehicleCarMatching/GrabOrderServices';
 
 @Form.create()
@@ -46,8 +44,6 @@ class GrabaSingleRecordView extends PureComponent {
     );
     const actions = ([
       <div className='flex'>
-        <div><img src={iconContact} className='width' alt='' />&nbsp;&nbsp;{data.shipper}</div>
-        <img src={iconPhone} className='width' alt='' />
       </div>]);
     const route = (
       <div className='flexColumn'>

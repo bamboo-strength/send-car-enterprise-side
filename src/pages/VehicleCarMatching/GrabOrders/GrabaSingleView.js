@@ -5,8 +5,6 @@ import router from 'umi/router';
 import { NavBar, Toast, WhiteSpace } from 'antd-mobile';
 import NetWorkCardView from '@/components/NetWorks/NetWorkCardView';
 import Text from 'antd/es/typography/Text';
-import iconContact from '../../../../public/Network/icon_contact.png';
-import iconPhone from '../../../../public/Network/icon_phone.png';
 import Title from 'antd/es/typography/Title';
 import { detail, grabasingle, selectVehicle } from '@/services/VehicleCarMatching/GrabOrderServices';
 
@@ -125,7 +123,7 @@ class BiddingView extends PureComponent {
   handleRowClick = (record) => {
     this.setState({selectedRowKeys: [record.id], vehicleNum: record.truckno});
   }
-  
+
 
   render() {
     const { vehicle, theBid,dataS,mervehicle ,selectedRowKeys} = this.state;
@@ -154,8 +152,6 @@ class BiddingView extends PureComponent {
     const actions = (
       [
         <div className='flex'>
-          <div><img src={iconContact} className='width' alt='' />&nbsp;&nbsp;{dataS.receiver}</div>
-          <img src={iconPhone} onClick={()=>this.callPhone(dataS.receiverPhone)} className='width' alt='' />
         </div>
       ]);
     const route = (

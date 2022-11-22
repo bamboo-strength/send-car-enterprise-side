@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
 import { Card, Progress } from 'antd';
-import iconPhone from '../../../public/Network/icon_phone.png';
-import iconSingle from '../../../public/Network/icon_single.png';
 import network from './NetWork.less';
 import CountDown from '@/components/CountDown';
 
@@ -22,8 +20,6 @@ export default class NetWorkListCard extends PureComponent {
     const stateName = state === 2?'已报价':state === 3?'已中标':state === 4?'未中标':'已取消'
     const circle = <div className='dot' style={{background:state === 2?'#F59A23':state === 3?'#0DDD47':state === 4?'#7F7F7F':'#D9001B'}} />
     const textColor = {color:state === 2?'#F59A23':state === 3?'#0DDD47':state === 4?'#7F7F7F':'#D9001B'}
-    const callPhone = <div onClick={onCallPhone}>{item.shipper} <img src={iconPhone} alt='' /></div>
-    const extra = type === 0?callPhone:type === 1?state === 1?callPhone:<div style={textColor}>{circle}&nbsp; {stateName}</div>:undefined
     let countdown = <div />
     switch (state) {
       case 1:
@@ -48,7 +44,7 @@ export default class NetWorkListCard extends PureComponent {
     }
     const title = <span>货源编号：{item.id}{type === 1 ? undefined:item.splitBill === 0 ? undefined :''}</span>
     return (
-      <Card title={title} className={network.netWorkListCard} size='small' extra={extra} actions={actions} onClick={onClick} style={{marginBottom:type === 1?0:'8px'}}>
+      <Card title={title} className={network.netWorkListCard} size='small' actions={actions} onClick={onClick} style={{marginBottom:type === 1?0:'8px'}}>
         <div className='cardDiv'>
           <div className='leftDiv'>
             <div style={{display:'flex'}}>
@@ -60,9 +56,6 @@ export default class NetWorkListCard extends PureComponent {
                   <div style={{ background: '#F59A23' }} />{item.receiveAddressRegionName}
                 </div>
               </div>
-              {
-              type === 1? state === 1?undefined:<div className='phoneBox' onClick={onCallPhone}><img src={iconPhone} alt='' /></div>:undefined
-            }
             </div>
             <p className='leftP'>物资名称:{item.materialName}</p>
             {
@@ -111,22 +104,6 @@ export default class NetWorkListCard extends PureComponent {
           }
           </div>
           <div style={{ display: type === 1?state === 1 ? 'block' : 'none':'block',}} className='divRight'>
-            {
-              type===1&&item.sourceGoodsStatus===1?
-                <div className='rightDivHyaline'>
-                  <img src={type === 2?iconPhone: iconSingle} style={{width:type === 2?'30px':undefined}} alt='' />
-                  <span style={{wordWrap: 'break-word',width:'60px',fontSize:'12px',textAlign:'center'}}>{type === 0 ? '抢单' : type === 1 ? '竞价': `${item.shipper }`}</span>
-                </div>
-                :
-                <div className='rightDiv'>
-                  <img src={type === 2?iconPhone: iconSingle} style={{width:type === 2?'30px':undefined}} alt='' />
-                  <span style={{wordWrap: 'break-word',width:'60px',fontSize:'12px',textAlign:'center'}}>{type === 0 ? '抢单' : type === 1 ? '竞价': `${item.shipper }`}</span>
-                </div>
-            }
-            {/* <div className='rightDiv'> */}
-            {/*  <img  src={type === 2?iconPhone: iconSingle} style={{width:type === 2?'30px':undefined}} alt='' /> */}
-            {/*  <span>{type === 0 ? '抢单' : type === 1 ? '竞价': `${item.shipper }`}</span> */}
-            {/* </div> */}
           </div>
         </div>
       </Card>);

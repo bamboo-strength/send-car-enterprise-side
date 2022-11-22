@@ -48,16 +48,16 @@ export default class MatrixMobileInput extends PureComponent {
         break;
       case 'isPlateNo': {
         const express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
-        if(val.length === 7){ // 普通汽车
+        if (val.length === 7) { // 普通汽车
           if (!express.test(val)) {
             callback('请输入正确的车牌号！');
           }
-        }else if(val.length === 8){ // 新能源汽车
+        } else if (val.length === 8) { // 新能源汽车
           const newex = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/
           if (!newex.test(val)) {
             callback('请输入正确的车牌号！');
           }
-        }else {
+        } else {
           callback('请输入正确的车牌号！');
         }
         break;
@@ -71,27 +71,27 @@ export default class MatrixMobileInput extends PureComponent {
         break;
       }
       case 'isIdCardNo': {
-        const express = func.IdentityCodeValid(val) ;
+        const express = func.IdentityCodeValid(val);
         if (!express) {
           callback('请输入正确的身份证号！');
         }
         break;
       }
-      case "isBankCardNo":{
+      case "isBankCardNo": {
         const express = /^([1-9]{1})(\d{15}|\d{16}|\d{18})$/;
         if (!express.test(val)) {
           callback('请输入正确的银行卡号！');
         }
         break;
       }
-      case "isSocialCode":{
+      case "isSocialCode": {
         const express = /^[^_IOZSVa-z\W]{2}\d{6}[^_IOZSVa-z\W]{10}$/g;
         if (!express.test(val)) {
           callback('请输入正确的统一社会信用代码！');
         }
         break;
       }
-      case "temp":{
+      case "temp": {
         const x = String(val).indexOf('.') + 1; // 小数点的位置
         const y = (x !== 0) ? String(val).length - x : 0; // 小数的位数
         const elementNum = Number.parseFloat(val);
@@ -101,10 +101,10 @@ export default class MatrixMobileInput extends PureComponent {
         }
         break
       }
-      default:console.log('没有符合的数字校验格式');
+      default: console.log('没有符合的数字校验格式');
     }
-    const {validator} = this.props
-    if (validator){
+    const { validator } = this.props
+    if (validator) {
       validator(rule, val, callback)
     }
     callback();
@@ -112,7 +112,7 @@ export default class MatrixMobileInput extends PureComponent {
 
   checkBit = (val, callback) => {
     // 校验小数位数
-    const { realbit,maximumLength } = this.props;
+    const { realbit, maximumLength } = this.props;
     if (func.notEmpty(realbit)) {
       const y = String(val).indexOf('.') + 1;
       const count = String(val).length - y;
@@ -121,9 +121,9 @@ export default class MatrixMobileInput extends PureComponent {
       }
     }
     // 校验小数点前面数字位数
-    if (func.notEmpty(maximumLength)){
+    if (func.notEmpty(maximumLength)) {
       const aa = String(val).split('.')
-      if (aa[0].length > maximumLength){
+      if (aa[0].length > maximumLength) {
         callback(`位数超出，只能输入${maximumLength}位数`)
       }
     }
@@ -132,11 +132,11 @@ export default class MatrixMobileInput extends PureComponent {
   render() {
     const {
       form, label, id, numberType, required, placeholder, maxLength, initialValue, className,
-      onBlur, editable, onClick, style,labelNumber,disabled,isColon,extra,type,moneyKeyboardAlign='left',readonly
+      onBlur, editable, onClick, style, labelNumber, disabled, isColon, extra, type, moneyKeyboardAlign = 'left', readonly
     } = this.props;
-    const { getFieldError,getFieldProps } = form;
+    const { getFieldError, getFieldProps } = form;
     return (
-      <div className={className} style={{ ...style,position: 'relative' }}>
+      <div className={className} style={{ ...style, position: 'relative' }}>
         <InputItem
           {...getFieldProps(id, {
             initialValue,
@@ -150,7 +150,7 @@ export default class MatrixMobileInput extends PureComponent {
             ],
           })}
           placeholder={placeholder}
-          maxLength={maxLength||25}
+          maxLength={maxLength || 25}
           onBlur={onBlur}
           onClick={onClick}
           clear
@@ -163,7 +163,7 @@ export default class MatrixMobileInput extends PureComponent {
           readonly={readonly}
           form={form}
         >
-          {required ? <span style={{color:'red'}}>*</span>:''} {label}{isColon?null:'：'}
+          {required ? <span style={{ color: 'red' }}>*</span> : ''} {label}{isColon ? null : '：'}
 
         </InputItem>
         {

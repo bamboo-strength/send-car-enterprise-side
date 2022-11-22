@@ -1,5 +1,4 @@
 import React from 'react';
-import { DropDownProps } from 'antd/lib/dropdown';
 import { ClickParam } from 'antd/es/menu';
 import { SiderTheme } from 'antd/es/layout/Sider';
 

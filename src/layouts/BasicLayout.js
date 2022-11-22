@@ -11,7 +11,6 @@ import Context from './MenuContext';
 import getPageTitle from '@/utils/getPageTitle';
 import { getCurrentUser } from '@/utils/authority';
 import { findNoList, readMassage } from '@/services/merDriver';
-import 'antd/dist/antd.less';
 
 const { Content } = Layout;
 

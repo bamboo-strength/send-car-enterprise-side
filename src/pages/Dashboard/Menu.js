@@ -7,7 +7,6 @@ import router from 'umi/router';
 import styles from '../../layouts/Sword.less';
 import menu from './Menu.less';
 import { clientId } from '@/defaultSettings';
-import banner02 from '../../../public/product/banner02.png';
 import { gethomePageImg, getNotice } from '@/services/menu';
 import func from '@/utils/Func';
 import IndexDataList from '../PageMould/IndexDataList';

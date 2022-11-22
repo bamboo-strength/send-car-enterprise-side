@@ -77,7 +77,6 @@ class FlowControl extends PureComponent {
             bordered={false}
             hoverable
             // style={{ width: 480 }}
-            cover={<img alt="example" src={require('../../../../public/product/lxgk.jpg')} />}
           />
           <Card className={styles.card} bordered={false}>
             物资车辆流向智能监控平台物资车辆流向智能监控平台通过综合使用云平台、GS地理信息技术、GPS+北斗定位技术、信息编码技术、物联网技术、移动通信技术，对业务车辆自装货出厂直至规定区域停车卸货进行全过程分析。<br /><br />

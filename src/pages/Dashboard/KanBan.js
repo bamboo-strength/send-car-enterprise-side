@@ -8,14 +8,6 @@ import CarrierSelectShipContent from './CarrierSelectShipContent';
 import menu from './Menu.less';
 import { getColums, getCommonParam, getTenantId } from '../Merchants/commontable';
 import { getRelationTenant } from '../../services/defaultShippers';
-import icon_notice from '../../../public/product/icon_notice.png';
-import icon_more from '../../../public/product/icon_more.png';
-import icon_entrust from '../../../public/product/icon_entrust.png';
-import icon_order from '../../../public/product/icon_order.png';
-import icon_plan from '../../../public/product/icon_plan.png';
-import icon_someone from '../../../public/product/icon_someone.png';
-import banner02 from '../../../public/product/banner02.jpg';
-import icon_bell from '../../../public/product/icon_bell.png';
 import { gethomePageImg, getNotice, getMobileQuery,getGeneral } from '../../services/menu';
 import func from '@/utils/Func';
 import { TABLEEXTEND_COLUMNLIST } from '@/actions/tableExtend';
@@ -124,15 +116,6 @@ class Kanban extends PureComponent {
           <Row gutter={16} className='dataPage_echarts'>
             {pieChartList.map(itempie => {
               let menuImg = '';
-              if (itempie.chartTitle === '订单') {
-                menuImg = <img src={icon_order} alt='' className='menuImg' />;
-              } else if (itempie.chartTitle === '委托单') {
-                menuImg = <img src={icon_entrust} alt='' className='menuImg' />;
-              } else if (itempie.chartTitle === '派车计划') {
-                menuImg = <img src={icon_plan} alt='' className='menuImg' />;
-              } else if (itempie.chartTitle === '派车单') {
-                menuImg = <img src={icon_someone} alt='' className='menuImg' />;
-              }
               return (
                 <Col className='gutter-row menu-row' span={12} style={{ padding: 8 }}>
                   <p className='menu-p'>{menuImg}{itempie.chartTitle}</p>

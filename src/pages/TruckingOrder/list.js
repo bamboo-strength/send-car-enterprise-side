@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Row, Button, Form, Icon } from 'antd';
+import { Form, Row, Col, Button, Icon } from 'antd';
 import router from 'umi/router';
 import { Modal, NavBar, Toast, Card, WhiteSpace } from 'antd-mobile';
-import MatrixMobileInput from '@/components/Matrix/MatrixMobileInput';
+import MatrixInput from '@/components/Matrix/MatrixInput';
 import styles from './index.less';
 
 @Form.create()
@@ -22,7 +22,15 @@ class TruckingOrderList extends PureComponent {
 
   }
 
-  search = () => {}
+  handleSearch = () => {
+    const { form } = this.props;
+    const values = form.getFieldsValue();
+  }
+
+  reset = () => {
+    const { form } = this.props;
+    form.resetFields();
+  }
 
   render() {
     const { resultData, expand } = this.state;
@@ -31,6 +39,7 @@ class TruckingOrderList extends PureComponent {
       <div>
         <NavBar
           mode="light"
+          style={{ zIndex: 1000 }}
           icon={<Icon type="left" />}
           onLeftClick={() => router.push('/dashboard/function')}
           rightContent={[
@@ -49,8 +58,7 @@ class TruckingOrderList extends PureComponent {
           expand &&
           <Modal
             visible={expand}
-            title="派车单查询"
-            className={styles['ou-modal']}
+            style={{ marginTop: 45 }}
             transparen
             maskClosable
             onClose={() => this.toggle()}
@@ -58,15 +66,13 @@ class TruckingOrderList extends PureComponent {
             animationType='slide-down'
             platform='android'
           >
-            <Row>
-              <MatrixMobileInput id='vehicleNo' label='车号' labelNumber={8} placeholder='请输入车号' form={form} />
-              <MatrixMobileInput id='driverName' label='司机姓名' labelNumber={8} placeholder='请输入司机姓名' className='list-class' form={form} />
-              <MatrixMobileInput id='driverPhone' label='手机号' labelNumber={8} placeholder='请输入手机号' className='list-class' form={form} />
-            </Row>
-            <div style={{ marginTop: '8px', float: 'right' }}>
-              <Button type="primary" size='small' inline onClick={() => this.search()} style={{ marginLeft: '8px' }}>查询</Button>
-              <Button type="primary" size='small' inline onClick={() => this.search('reset')} style={{ marginLeft: '15px' }}>重置</Button>
-            </div>
+            <Col span={24} style={{ padding: 12 }}>
+              <MatrixInput label='合同编号' id='current' form={form} />
+            </Col>
+            <Col span={24} style={{ padding: 12 }}>
+              <Button type="primary" onClick={() => this.handleSearch()} style={{ marginLeft: '8px' }}>查询</Button>
+              <Button onClick={() => this.reset()} style={{ marginLeft: '15px' }}>重置</Button>
+            </Col>
           </Modal>
         }
       </div>

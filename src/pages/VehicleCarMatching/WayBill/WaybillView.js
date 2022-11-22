@@ -7,7 +7,6 @@ import Text from 'antd/es/typography/Text';
 import NetWorkLess from '@/components/NetWorks/NetWork.less';
 import NetWorkList from '@/components/NetWorks/NetWorkList';
 import NetWorkRate from '@/components/NetWorks/NetWorkRate';
-import IconNoPictures from '../../../../public/Network/icon_NoPictures.png';
 import func from '@/utils/Func';
 import Image from '@/pages/ShopCenter/component/Image';
 
@@ -74,7 +73,6 @@ export class WaybillView extends PureComponent {
                   :
                   (
                     <div style={{ width: '100%', height: '100px',display:'flex',justifyContent: 'center',alignItems: 'center' }}>
-                      <img src={IconNoPictures} style={{height:'80%'}} />
                     </div>
                   )
               }

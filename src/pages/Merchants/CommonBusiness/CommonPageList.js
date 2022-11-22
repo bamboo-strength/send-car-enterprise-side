@@ -17,7 +17,6 @@ import { getButton, getToken } from '@/utils/authority';
 import { getBaseUrl, getTenantId } from '../commontable';
 import matrixqrcode from '../../../components/Matrix/MatrixCommon.less';
 import { handleSearchParams } from '../../../components/Matrix/commonJs';
-import IconBgQrCode from '../../../../public/image/icon_bg_qrCode.png';
 
 const { alert } = MobileModal;
 
@@ -353,14 +352,6 @@ class CommonPageList extends PureComponent {
           closable={false}
         >
           <Title level={4} style={{color: '#666',fontWeight: 500,textAlign:'center'}}>二维码</Title>
-          <div style={{background:`url(${IconBgQrCode}) 100% 100%`,height:280,width:280,margin: 'auto'}} className='qrCodeBg'>
-            <QRCode
-              value={obj[qrCodeInnerContent]}// 生成二维码的内容
-              size={240} // 二维码的大小
-              fgColor="#000000"
-              style={{margin: '15px 0'}}
-            />
-          </div>
           {
             Object.keys(JSON.parse(qrCodeContent)).map(key => {
               return (<Text style={{marginBottom:5}}>{JSON.parse(qrCodeContent)[key]}：{obj[key]}</Text>)

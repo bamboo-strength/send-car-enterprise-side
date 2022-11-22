@@ -67,7 +67,9 @@
     <script type="text/javascript">
       setTimeout(() => {
         var afterInfo = window.document.getElementById('afterInfo');
-        afterInfo.style.display = 'block';
+        if (afterInfo.style) {
+          afterInfo.style.display = 'block';
+        }
         let btnReload = window.document.getElementById('btnReload');
         btnReload.onclick = function() {
           location.reload();

@@ -76,7 +76,6 @@ class Merchants extends PureComponent {
             bordered={false}
             hoverable
             // style={{ width: 480 }}
-            cover={<img alt="example" src={require('../../../../public/product/kspt.jpg')} />}
           />
           <Card className={styles.card} bordered={false}>
             客商平台用于企业物流信息的发布、承运计划的管理、车辆管理、运输信息的查询。<br /><br />

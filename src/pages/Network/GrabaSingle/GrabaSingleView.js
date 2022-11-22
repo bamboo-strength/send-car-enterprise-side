@@ -5,9 +5,6 @@ import router from 'umi/router';
 import { NavBar, Toast, WhiteSpace } from 'antd-mobile';
 import NetWorkCardView from '@/components/NetWorks/NetWorkCardView';
 import Text from 'antd/es/typography/Text';
-import iconPositioning from '../../../../public/Network/icon_positioning.png';
-import iconContact from '../../../../public/Network/icon_contact.png';
-import iconPhone from '../../../../public/Network/icon_phone.png';
 import Title from 'antd/es/typography/Title';
 import { detail, grabasingle, verifyDriver } from '@/services/grabasingle';
 import { list } from '@/services/merVehicle';
@@ -138,8 +135,6 @@ class BiddingView extends PureComponent {
     const actions = (
       [
         <div className='flex'>
-          <div><img src={iconContact} className='width' alt='' />&nbsp;&nbsp;{dataS.shipper}</div>
-          <img src={iconPhone} className='width' alt='' />
         </div>
       ]);
     const route = (
@@ -149,9 +144,7 @@ class BiddingView extends PureComponent {
         <Text>收货地址：{dataS.receiveAddressRegionName}</Text>
       </div>);
     const actionsRoute = ([
-      <div className='flex'><img src={iconPositioning} className='width' alt='' />
-        {/* <Text className='colorBlue'>约20km</Text> */}
-      </div>]);
+      <div />]);
     const columns = [
       {
         title: '单价(元/吨)',

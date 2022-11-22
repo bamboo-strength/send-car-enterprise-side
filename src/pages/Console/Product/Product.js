@@ -311,7 +311,6 @@ class Product extends PureComponent {
             bordered={false}
             // hoverable
             style={{ marginTop: 35 }}
-            cover={<img alt="example" src={product==='0'?require('../../../../public/product/lxgk.jpg'):require('../../../../public/product/kspt.jpg')} />}
           />
           <Form hideRequiredMark={false} >
             <Card className={styles.card} bordered={false}>

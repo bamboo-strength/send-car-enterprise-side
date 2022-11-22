@@ -5,7 +5,6 @@ import router from 'umi/router';
 import { NavBar, Toast, WhiteSpace } from 'antd-mobile';
 import NetWorkCardView from '@/components/NetWorks/NetWorkCardView';
 import Text from 'antd/es/typography/Text';
-import iconPositioning from '../../../../public/Network/icon_positioning.png';
 import MatrixInput from '@/components/Matrix/MatrixInput';
 import Title from 'antd/es/typography/Title';
 import { bidding, cancelbidding, detail, remove } from '@/services/bidding';
@@ -238,7 +237,6 @@ class BiddingView extends PureComponent {
         <WhiteSpace size='xs' />
         <Text>收货地址：{data.receiveAddressRegionName}</Text>
       </div>);
-    const actionsRoute = ([<div className='flex'><img src={iconPositioning} className='width' alt='' /></div>]);
     const columns = [
       {
         title: '单价(元/吨)',
@@ -332,7 +330,6 @@ class BiddingView extends PureComponent {
           <WhiteSpace />
           {countdown}
           <NetWorkCardView title='货物信息' content={content} extra={extra} />
-          <NetWorkCardView title='路线信息' content={route} actions={actionsRoute} />
           {state === 3 ? <NetWorkCardView title='单车信息' content={Abike} /> : undefined}
           {state === 2 ? <NetWorkCardView title='报价信息' content={Quote} /> : undefined}
           <div style={{ padding: '12px 12px 0px' }}>

@@ -8,7 +8,6 @@ import { list } from '../../../services/bidding';
 import func from '@/utils/Func';
 import { cancelbidding, remove } from '@/services/bidding';
 import { orderTakeVerify } from '@/services/FreightServices';
-import iconSingleRecord from '../../../../public/Network/icon_singleRecord.png';
 
 const dataSource1 = new ListView.DataSource({
   rowHasChanged: (row1, row2) => row1 !== row2,

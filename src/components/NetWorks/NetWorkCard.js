@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import Text from 'antd/es/typography/Text';
 import { Card } from 'antd';
-import IconHair from '../../../public/Network/icon_hair.png'
-import IconClosed from '../../../public/Network/icon_closed.png'
 
 export default class NetWorkCard extends PureComponent {
   render() {
@@ -17,9 +15,7 @@ export default class NetWorkCard extends PureComponent {
         onClick={onclick}
       >
         <div style={{ display: 'flex',flexDirection: 'column', justifyContent: 'space-between' }}>
-          <h3 style={{display: 'flex',alignItems: 'center',fontWeight: 'bold'}}><img src={IconHair} alt='' />&nbsp; {rowData.shipAddressName}</h3>
-          <h3 style={{display: 'flex',alignItems: 'center',fontWeight: 'bold'}}><img src={IconClosed} alt='' />&nbsp; {rowData.receiveAddressName}</h3>
-        </div>
+         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between',marginBottom:5,marginTop:8 }}>
           <Text type="secondary">物资：{rowData.materialName}</Text>
           {/*<Text type="secondary">数量：{rowData.carryAmountName}</Text>*/}
