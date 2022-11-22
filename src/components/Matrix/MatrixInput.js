@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Input, Form } from 'antd';
 import func from '@/utils/Func';
+import './MatrixInput.less';
 
 export default class MatrixInput extends PureComponent {
   numberValidator = (rule, val, callback, numberType) => {
@@ -111,16 +112,9 @@ export default class MatrixInput extends PureComponent {
       onBlur, onPressEnter, xs } = this.props
     const { getFieldDecorator } = form
     const FormItem = Form.Item;
+
     const formItemLayout = {
-      labelCol: {
-        xs: { span: func.notEmpty(xs) ? xs : 6 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: func.notEmpty(xs) ? 24 - xs : 16 },
-        sm: { span: 11 },
-        md: { span: 9 },
-      }
+      className: 'searchGroup'
     };
 
     const checkRule =
