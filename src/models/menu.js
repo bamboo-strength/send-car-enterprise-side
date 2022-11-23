@@ -163,13 +163,6 @@ export default {
         routes = formatRoutes(response.data || []);
         setRoutes(routes);
       }
-      // 设置按钮数据
-      // let buttons = getButtons();
-      // if (buttons.length === 0) {
-      //   const response = yield call(dynamicButtons);
-      //   buttons = formatButtons(response.data);
-      //   setButtons(buttons);
-      // }
       const originalMenuData = memoizeOneFormatter(routes, authority, path);
       const menuData = filterMenuData(originalMenuData);
       const breadcrumbNameMap = memoizeOneGetBreadcrumbNameMap(originalMenuData);

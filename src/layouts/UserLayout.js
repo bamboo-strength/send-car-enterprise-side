@@ -38,10 +38,10 @@ class UserLayout extends Component {
       dispatch,
       route: { routes, authority },
     } = this.props;
-    dispatch({
-      type: 'menu/fetchMenuData',
-      payload: { routes, authority },
-    });
+    // dispatch({
+    //   type: 'menu/fetchMenuData',
+    //   payload: { routes, authority },
+    // });
   }
 
   render() {

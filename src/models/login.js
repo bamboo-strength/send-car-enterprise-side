@@ -64,6 +64,8 @@ export default {
         }
       }
 
+      localStorage.setItem('status', true)
+
       // 简版，隐藏头和菜单
       localStorage.setItem('isSimplify', true);
       localStorage.setItem('merchantsFhfTenantId', response.tenant_id);

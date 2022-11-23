@@ -7,6 +7,7 @@ import Login from '@/components/Login';
 import styles from './Login.less';
 import { removeAll } from '@/utils/authority';
 import cookie from 'react-cookies';
+import { router } from 'umi';
 
 const { Tab, UserName, Password, Submit } = Login;
 
@@ -52,6 +53,7 @@ class LoginPage extends Component {
         },
       }).then(() => {
         const { login } = this.props;
+        router.push('/')
         if (login.status === 'ok' && autoLogin) {
           cookie.save('rememberAccount', account);
           cookie.save('rememberPwd', values.password);

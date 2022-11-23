@@ -45,7 +45,6 @@ class TruckingOrderList extends PureComponent {
     const { pageNum, dataSource, truckOrderData } = this.state;
 
     const data = truckOrderData.concat([{}, {}, {}]);
-    console.log(dataSource.cloneWithRows([{}, {}, {}]));
     this.setState({
       pageNum,
       dataSource: dataSource.cloneWithRows([{}, {}, {}]),
@@ -122,10 +121,9 @@ class TruckingOrderList extends PureComponent {
       <div
         key={`${sectionID}-${rowID}`}
         style={{
-          backgroundColor: '#F5F5F9',
+          backgroundColor: '#f0f2f5',
           height: 8,
-          borderTop: '1px solid #ECECED',
-          borderBottom: '1px solid #ECECED',
+          borderTop: '1px solid #DDD',
         }}
       />
     );
@@ -148,29 +146,31 @@ class TruckingOrderList extends PureComponent {
         >
           <span className={styles.trader}>派车单查询</span>
         </NavBar>
-        <div className={styles.content}>
-          { truckOrderData.length ?
-              (
-                <ListView
-                  dataSource={dataSource}
-                  renderFooter={() => (<div style={{ padding: 20, textAlign: 'center' }}>{isLoading ? '加载中...' : '加载完毕'}</div>)}
-                  renderRow={row}
-                  renderSeparator={separator}
-                  pageSize={5}
-                  useBodyScroll
-                  style={{
-                    overflow: 'auto'
-                  }}
-                  onScroll={() => { console.log('scroll'); }}
-                  scrollRenderAheadDistance={500}
-                  onEndReached={this.onEndReached}
-                  onEndReachedThreshold={10}
-                />
+        { truckOrderData.length ?
+            (
+              <ListView
+                dataSource={dataSource}
+                renderFooter={() => (<div style={{ padding: 12, textAlign: 'center' }}>{isLoading ? '加载中...' : '加载完毕'}</div>)}
+                renderRow={row}
+                renderSeparator={separator}
+                pageSize={4}
+                useBodyScroll
+                style={{
+                  position: 'relative',
+                  overflow: 'auto',
+                  padding: 12,
+                  top: 45,
+                  backgroundColor: '#f0f2f5'
+                }}
+                onScroll={() => { console.log('scroll'); }}
+                scrollRenderAheadDistance={500}
+                onEndReached={this.onEndReached}
+                onEndReachedThreshold={10}
+              />
 
-              )
-            : <Empty style={{ padding: 100 }} description="暂无数据" className="list-No-data" />
-          }
-        </div>
+            )
+          : <Empty style={{ padding: 100 }} description="暂无数据" className="list-No-data" />
+        }
         {
           expand &&
           <Modal

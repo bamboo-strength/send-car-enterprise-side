@@ -19,6 +19,13 @@ class Function extends PureComponent {
     router.push(path);
   };
 
+  componentDidMount() {
+    const status = localStorage.getItem('status');
+    if (!status) {
+      router.push('/user')
+    }
+  }
+
   render() {
     // const { menuData } = this.props;
     const menuData = [

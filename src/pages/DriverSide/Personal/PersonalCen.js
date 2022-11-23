@@ -26,78 +26,28 @@ class PersonalCen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      leaderstate:'',
-      leaderstateName:'',
-      color:'',
-      showCerImage:false,
-      cerImage:'',
-      cerStatus:'',
-      showfocusGzh:false,
-      showDownload:false,
+      leaderstate: '',
+      leaderstateName: '',
+      color: '',
+      showCerImage: false,
+      cerImage: '',
+      cerStatus: '',
+      showDownload: false,
       refreshing: false,
       height: document.documentElement.clientHeight,
-      driverDetail:{},
-      visible:false
+      driverDetail: {},
+      visible: false
     };
   }
 
-
-  componentWillMount() {
-    let color=''
-    if (project === 'wlhy') {
-      getAuditStatus().then((resp) => {
-        if (resp.data.data !== undefined) {
-          switch (resp.data.data.status) {
-            case 0:
-              color = '#FF8000';
-              break;
-            case 1:
-              color = '#00BB00';
-              break;
-            case 2:
-              color = '#FF0000';
-              break;
-          }
-          this.setState({
-            leaderstate: resp.data.data.status,
-            leaderstateName: resp.data.data.dictionary,
-            color
-          })
-        } else {
-          this.setState({
-            // leaderstate:resp.data.data.status,
-            leaderstate: -1,
-            leaderstateName: '未绑定',
-            color: '#FF0000'
-          })
-        }
-      })
-    }
-  }
-
-  componentDidMount() {
-    // const currentDriver = getCurrentDriver() || {}
-    // if(!currentDriver.id || (currentDriver.id && currentDriver.auditStatus !== 1)){
-      getDriverDetail({userId:getCurrentUser().userId}).then(resp=>{
-        this.setState({
-          driverDetail: resp.data
-        })
-        localStorage.setItem('currentDriver',JSON.stringify(resp.data)) // 更新缓存
-      })
-    // }else {
-    //   this.setState({
-    //     driverDetail: currentDriver
-    //   })
-    // }
-  }
-
   checkCertification = (path, userdetail) => {
-     if (userdetail.auditStatus !== 1 && path!=='/driverSide/personal/driverCertification') { // 司机认证跳过
+    return;
+    if (userdetail.auditStatus !== 1 && path !== '/driverSide/personal/driverCertification') { // 司机认证跳过
       Toast.info('该功能在司机认证通过后使用');
       return;
     }
 
-     if(path==='/driverSide/personal/myCars'&& userdetail.truckno===''){
+    if (path === '/driverSide/personal/myCars' && userdetail.truckno === '') {
       router.push('/driverSide/personal/carCertification/undefined')
       return;
     }
@@ -107,12 +57,12 @@ class PersonalCen extends React.Component {
   logOut = () => { // 退出登录
     const u = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
     const ifWx = window.__wxjs_environment === 'miniprogram'
-    if(u && !ifWx){ // ios环境 非小程序
+    if (u && !ifWx) { // ios环境 非小程序
       const message = {
-        'name' : 'loginOutClick',
+        'name': 'loginOutClick',
       }
       window.webkit.messageHandlers.loginOutClick.postMessage(message);
-    }else {
+    } else {
       const { dispatch } = this.props;
       let tenant = '';
       if (func.notEmpty(getCurrentUser())) {
@@ -136,25 +86,24 @@ class PersonalCen extends React.Component {
     }
   };
 
-  toLx=()=>{ // 测试流向跳转
-    if(window.__wxjs_environment === 'miniprogram'){
-      wx.miniProgram.navigateTo({url: `/pages/toLx/toLx?isBusiness=true&account=18654956398&pwd=123456`})
+  toLx = () => { // 测试流向跳转
+    if (window.__wxjs_environment === 'miniprogram') {
+      wx.miniProgram.navigateTo({ url: `/pages/toLx/toLx?isBusiness=true&account=18654956398&pwd=123456` })
     }
   }
 
-
-  realCertification=()=>{ // 实名认证
+  realCertification = () => { // 实名认证
     this.setState({
-      showCerImage:true
-    },()=>{
+      showCerImage: true
+    }, () => {
       requestListApi('/freight/fre-taxinterface/livingbodycheck/getQRCode', {}).then(resp => {
         if (resp.success) {
           this.setState({
-            cerImage:resp.data,
-          },()=>{ // 校验状态
+            cerImage: resp.data,
+          }, () => { // 校验状态
             requestListApi('/freight/fre-taxinterface/livingbodycheck/getResult', {}).then(resp2 => {
               this.setState({
-                cerStatus:resp2.msg
+                cerStatus: resp2.msg
               })
             })
           })
@@ -163,42 +112,41 @@ class PersonalCen extends React.Component {
     })
   }
 
-  showCerImageCancel=()=>{
+  showCerImageCancel = () => {
     this.setState({
-      showCerImage:false,
-      showfocusGzh:false,
-      showDownload:false
+      showCerImage: false,
+      showDownload: false
     })
   }
 
-  binbWxInfo=()=>{ // 绑定微信信息
-    const item ={
-      auth:getToken()
+  binbWxInfo = () => { // 绑定微信信息
+    const item = {
+      auth: getToken()
     }
-    wx.miniProgram.navigateTo({url: `/pages/toAuthorize/toAuthorize?items=${JSON.stringify(item)}`});
+    wx.miniProgram.navigateTo({ url: `/pages/toAuthorize/toAuthorize?items=${JSON.stringify(item)}` });
   }
 
   // 下拉刷新
-  onRefresh=()=>{
-      this.setState({ refreshing: true });
-      getDriverDetail({userId:getCurrentUser().userId}).then(resp=>{
-        this.setState(
-          { refreshing: false,driverDetail: resp.data }
+  onRefresh = () => {
+    this.setState({ refreshing: true });
+    getDriverDetail({ userId: getCurrentUser().userId }).then(resp => {
+      this.setState(
+        { refreshing: false, driverDetail: resp.data }
       );
-        localStorage.setItem('currentDriver',JSON.stringify(resp.data)) // 更新缓存
-      })
+      localStorage.setItem('currentDriver', JSON.stringify(resp.data)) // 更新缓存
+    })
   }
 
   versionUpdate = () => {
     const u = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
     const ifWx = window.__wxjs_environment === 'miniprogram'
-    if(u && !ifWx){ // ios版本
+    if (u && !ifWx) { // ios版本
       const message = {
-        'versionUpdate' : 'version',
+        'versionUpdate': 'version',
       }
       window.webkit.messageHandlers.versionUpdateClick.postMessage(message);
-    }else {
-      const param = { 'paramKey': project === 'wlhy'?`downloadapp.wlhy.driver`:`downloadapp.${clientId}` };
+    } else {
+      const param = { 'paramKey': project === 'wlhy' ? `downloadapp.wlhy.driver` : `downloadapp.${clientId}` };
       param.tenantId = getTenantId();
 
       getSystemParamByParamKey(param).then(resp => {
@@ -207,8 +155,8 @@ class PersonalCen extends React.Component {
             const versionName = '';
             const versionSplit = Version.getVersion(versionName);
             const verSplit = versionSplit.split('--');
-            const {data} = resp
-            if(func.notEmpty(data.paramValue)){
+            const { data } = resp
+            if (func.notEmpty(data.paramValue)) {
               // 数据库版本比安卓版本高才会更新
               if (parseFloat(resp.data.paramValue) <= parseFloat(verSplit[1])) {
                 Toast.info('已经是最新的版本了')
@@ -217,7 +165,7 @@ class PersonalCen extends React.Component {
                   visible: true,
                 });
               }
-            }else {
+            } else {
               Toast.info('已经是最新的版本了')
             }
           } catch (e) {
@@ -229,24 +177,24 @@ class PersonalCen extends React.Component {
   };
 
   handleOk = () => { // 区分大车奔腾与砂石
-    if(currentTenant === 'login'){
-      if (project === 'wlhy'){
+    if (currentTenant === 'login') {
+      if (project === 'wlhy') {
         window.location.href = 'https://www.pgyer.com/esnz';
-      }else if (clientId === 'kspt_driver'){
+      } else if (clientId === 'kspt_driver') {
         window.location.href = 'https://www.pgyer.com/PB4q';
-      }else if (clientId === 'kspt_shf'){
+      } else if (clientId === 'kspt_shf') {
         window.location.href = 'https://www.pgyer.com/6H9w';
-      }else if (clientId === 'kspt_cyf'){
+      } else if (clientId === 'kspt_cyf') {
         window.location.href = 'https://www.pgyer.com/BR6H';
-      }else { // 企业端
+      } else { // 企业端
         window.location.href = 'https://www.pgyer.com/q5FX';
       }
-    }else if(currentTenant === '847975') {
-      if (clientId === 'kspt_driver'){
+    } else if (currentTenant === '847975') {
+      if (clientId === 'kspt_driver') {
         window.location.href = 'https://www.pgyer.com/8MiF';
-      }else if (clientId === 'kspt_shf'){
+      } else if (clientId === 'kspt_shf') {
         window.location.href = 'https://www.pgyer.com/qS0V';
-      }else { // 企业端
+      } else { // 企业端
         window.location.href = 'https://www.pgyer.com/C4Bn';
       }
     }
@@ -257,13 +205,12 @@ class PersonalCen extends React.Component {
 
   render() {
     const { menu: { menuData } } = this.props;
-    const {leaderstate,leaderstateName,color,showCerImage,cerImage,cerStatus,showfocusGzh,showDownload,driverDetail,refreshing,visible} = this.state;
-   // console.log(driverDetail,2222)
-    const topMenu = menuData.length>0?menuData.filter(item => item.path === '/driverSide'):[]
-    const secondMenu = topMenu.length>0?topMenu[0].children.filter(item => item.path === '/driverSide/personal'):[]
-    const secondMenus = secondMenu.length>0?secondMenu[0].children:[]
-    const  tenantId = getTenantId()
-    const listSty = {marginTop: '45px',width: '100%',background: '#f0f2f5',paddingBottom:'84px'}
+    const { leaderstate, leaderstateName, color, showCerImage, cerImage, cerStatus, showDownload, driverDetail, refreshing, visible } = this.state;
+    const topMenu = menuData.length > 0 ? menuData.filter(item => item.path === '/driverSide') : []
+    const secondMenu = topMenu.length > 0 ? topMenu[0].children.filter(item => item.path === '/driverSide/personal') : []
+    const secondMenus = secondMenu.length > 0 ? secondMenu[0].children : []
+    const tenantId = getTenantId()
+    const listSty = { marginTop: '45px', width: '100%', background: '#f0f2f5', paddingBottom: '84px' }
     return (
       <div>
         <NavBar
@@ -279,7 +226,6 @@ class PersonalCen extends React.Component {
           onRefresh={this.onRefresh}
         >
           <div style={listSty}>
-
             <Card className='card-header'>
               <Card.Header
                 title={
@@ -287,64 +233,29 @@ class PersonalCen extends React.Component {
                     {driverDetail.name || getCurrentUser().realname}<br />
                     {driverDetail.phone || getCurrentUser().account}<br />
                     <span style={{ color: 'blue' }}> {driverDetail.auditStatusName ? `司机${driverDetail.auditStatusName}` : '司机未进行认证'}</span>
-                    <div style={{fontSize:'12px',padding:'5px 0px'}}>{driverDetail.auditStatus ==2 ?`驳回原因：${driverDetail.remark}`:undefined}</div>
+                    <div style={{ fontSize: '12px', padding: '5px 0px' }}>{driverDetail.auditStatus == 2 ? `驳回原因：${driverDetail.remark}` : undefined}</div>
                   </div>}
-                thumb={project==='wlhy'?`${logoImgUrl}/personalImg/wlhy.jpg`:`${logoImgUrl}/personalImg/${tenantId}.jpg`}
+                thumb={project === 'wlhy' ? `${logoImgUrl}/personalImg/wlhy.jpg` : `${logoImgUrl}/personalImg/${tenantId}.jpg`}
                 thumbStyle={{ width: '20%' }}
               />
             </Card>
             <WhiteSpace />
-            {project==='wlhy'?
-              <List className='static-list'>
-                <Item arrow="horizontal" onClick={() => router.push('/driverSide/personal/driverCertification2')} platform="android"><Icon type="money-collect" theme="twoTone" className='icon_name' /> 司机认证</Item>
-                <Item arrow="horizontal" onClick={() => (JSON.stringify(driverDetail) !=="{}"?(driverDetail.truckno ===''?router.push('/driverSide/personal/carCertification2/undefined'):router.push('/driverSide/personal/myCars')):Toast.fail('请先认证司机！'))} platform="android">
-                  <Icon type="money-collect" theme="twoTone" className='icon_name' />
-                  我的车辆
-                </Item>
-                <Item extra={<div style={{ color }}>{leaderstateName}</div>} arrow="horizontal" onClick={() =>driverDetail.auditStatus===1?router.push(`/driverSide/personal/carLeader/${leaderstate}`):Toast.fail('请先认证司机！')} platform="android">
-                  <Icon type="money-collect" theme="twoTone" className='icon_name' /> 车队长绑定
-                </Item>
-                <Item arrow="horizontal" platform="android" onClick={()=>driverDetail.auditStatus===1?this.realCertification():Toast.fail('请先认证司机！')}>
-                  <Icon type="upload" style={{ color: '#1890ff' }} className='icon_name' /> 实名认证
-                </Item>
-                {secondMenus.length>0?secondMenus.map(item => (
-                  <Item arrow="horizontal" multipleLine onClick={() => this.checkCertification(item.path, driverDetail)} platform="android">
-                    <Icon type={item.icon} theme="twoTone" className='icon_name' /> {item.name}
-                  </Item>
-                )):undefined
-                }
-                <Item arrow="horizontal" onClick={() => router.push('/system/changepassword')} platform="android">
-                  <Icon type="lock" theme="twoTone" className='icon_name' /> 修改密码
-                </Item>
-                <Item arrow="horizontal" onClick={() => router.push('/network/waybill/networkfeefback')} platform="android">
-                  <Icon type="save" theme="twoTone" className='icon_name' /> 意见反馈中心
-                </Item>
-
-              </List>
-              :
-              <List className='static-list'>
-                {secondMenus.length>0?secondMenus.map(item => (
-                  <Item arrow="horizontal" multipleLine onClick={() => this.checkCertification(item.path, driverDetail)} platform="android">
-                    <Icon type={item.icon} theme="twoTone" className='icon_name' /> {item.name}
-                  </Item>
-                )):undefined
-                }
-                <Item arrow="horizontal" onClick={() => router.push('/system/changepassword')} platform="android">
-                  <Icon type="lock" theme="twoTone" className='icon_name' /> 修改密码
-                </Item>
-                <Item arrow="horizontal" onClick={() => router.push('/driverSide/personal/myMessage')} platform="android">
-                  <Icon type="message" theme="twoTone" className='icon_name' /> 我的消息
-                </Item>
-                <Item arrow="horizontal" onClick={() => router.push('/driverSide/personal/feedback')} platform="android"><Icon type="save" theme="twoTone" className='icon_name' /> 意见反馈</Item>
-                <Item arrow="horizontal" platform="android" onClick={()=>this.setState({showDownload:true})}>
-                  <Icon type="appstore" theme="twoTone" className='icon_name' /> APP二维码分享
-                </Item>
-                <Item arrow="horizontal" platform="android" onClick={this.versionUpdate}>
-                  <Icon type="upload" style={{ color: '#1890ff' }} className='icon_name' /> 版本更新
-                </Item>
-              </List>
-            }
-            <Button icon='/image/plus.png' style={{lineHeight:'2',marginTop:'20px',height:'40px'}} type="danger" onClick={this.logOut} block>
+            <List className='static-list'>
+              <Item arrow="horizontal" onClick={() => router.push('/system/changepassword')} platform="android">
+                <Icon type="lock" theme="twoTone" className='icon_name' /> 修改密码
+              </Item>
+              <Item arrow="horizontal" onClick={() => router.push('/driverSide/personal/myMessage')} platform="android">
+                <Icon type="message" theme="twoTone" className='icon_name' /> 我的消息
+              </Item>
+              <Item arrow="horizontal" onClick={() => router.push('/driverSide/personal/feedback')} platform="android"><Icon type="save" theme="twoTone" className='icon_name' /> 意见反馈</Item>
+              <Item arrow="horizontal" platform="android" onClick={() => this.setState({ showDownload: true })}>
+                <Icon type="appstore" theme="twoTone" className='icon_name' /> APP二维码分享
+              </Item>
+              <Item arrow="horizontal" platform="android" onClick={this.versionUpdate}>
+                <Icon type="upload" style={{ color: '#1890ff' }} className='icon_name' /> 版本更新
+              </Item>
+            </List>
+            <Button icon='/image/plus.png' style={{ lineHeight: '2', marginTop: '20px', height: '40px' }} type="danger" onClick={this.logOut} block>
               退出登录
             </Button>
           </div>
@@ -359,25 +270,10 @@ class PersonalCen extends React.Component {
           onCancel={this.showCerImageCancel}
         >
           <div>
-            <div style={{textAlign: 'center'}}><img src={cerImage} style={{width:'50%'}} /></div>
+            <div style={{ textAlign: 'center' }}><img src={cerImage} style={{ width: '50%' }} /></div>
             <p />
-            <div style={{textAlign: 'center'}}>{cerStatus}</div>
+            <div style={{ textAlign: 'center' }}>{cerStatus}</div>
           </div>
-        </Modal>
-        <Modal
-          title='长按图片关注公众号'
-          width={540}
-          height={400}
-          visible={showfocusGzh}
-          onCancel={this.showCerImageCancel}
-          bodyStyle={{textAlign: 'center'}}
-          footer={[
-            <Button key="submit" type="primary" onClick={this.showCerImageCancel}>
-              我知道了
-            </Button>,
-          ]}
-        >
-          <img src={ghImg} />
         </Modal>
         <Modal visible={visible} onOk={this.handleOk} onCancel={this.handleCancel}>
           <p style={{ fontSize: 20, fontWeight: 'bold' }}>发现新版本</p>
@@ -389,7 +285,7 @@ class PersonalCen extends React.Component {
           height={400}
           visible={showDownload}
           onCancel={this.showCerImageCancel}
-          bodyStyle={{textAlign: 'center'}}
+          bodyStyle={{ textAlign: 'center' }}
           footer={[
             <Button key="submit" type="primary" onClick={this.showCerImageCancel}>
               关闭
@@ -397,7 +293,7 @@ class PersonalCen extends React.Component {
           ]}
         >
           <img src={`${logoImgUrl}/downLoadImg/${currentTenant}_${clientId}.png`} />
-          <div style={{fontWeight: 'bold',fontSize: '18px', color: '#1890FF', marginTop: '5px'}}>司机端</div>
+          <div style={{ fontWeight: 'bold', fontSize: '18px', color: '#1890FF', marginTop: '5px' }}>司机端</div>
         </Modal>
       </div>
     );

@@ -33,16 +33,11 @@
 }
 
 .truckingOrder {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   height: 100%;
   background-color: #f0f2f5;
 
   :global {
-    .am-navbar {
-      position: static;
-    }
-
     .ant-card-head {
       padding: 0 16px;
       min-height: 42px;
@@ -51,6 +46,10 @@
     }
 
     .ant-card-body {
+      padding: 0;
+    }
+
+    .am-list-footer {
       padding: 0;
     }
 
@@ -73,12 +72,6 @@
         }
       }
     }
-  }
-
-  .content {
-    flex: 1;
-    padding: 12px;
-    overflow-y: auto;
   }
 
   .footer {
